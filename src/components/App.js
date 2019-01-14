@@ -4,6 +4,7 @@ import Grid from './Grid';
 import Form from './Form';
 import Button from '@material-ui/core/Button';
 import Header from './common/Header';
+//import Header from '@material-ui/core/CardHeader';
 
 class App extends Component {
     constructor(){
@@ -79,7 +80,7 @@ class App extends Component {
         console.log('Render');
         return (
             <div className="container">  
-                 <Header/>                                
+                 <Header />                            
                  <Grid
                  data={this.state.data} 
                  ></Grid>
@@ -89,14 +90,6 @@ class App extends Component {
                  <Button variant="contained" color="primary">
                     Hello World
                 </Button>
-                <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                    data={this.state.data} 
-                    contentasdasd
-                    ></Grid>
             </div>                 
         );
     }
@@ -117,9 +110,6 @@ class App extends Component {
             tickerData: [...this.state.tickerData, tickerData]});        
             this.fetchDataWithTicker(tickerData.ticker);
         };
-        
-        
-
 }
 
 export default App;

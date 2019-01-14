@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-//import { Table } from 'react-bootstrap';
+//import color from '@material-ui/core/colors/amber';
+//import ReactTable from "react-table";
+//import "react-table/react-table.css;
 
 const GridHeader = () => { 
     return (
         <thead>
             <tr>
                 <th>Symbol</th>
-                <th>LatestPrice</th>
                 <th>CompanyName</th>
+                <th>LatestPrice</th>
                 <th>Sector</th>
-                <th>MarketCap</th>
+                <th>Change</th>
             </tr>
         </thead>
     );
@@ -21,10 +23,15 @@ const GridBody = props => {
         return (
             <tr key={index}>
                 <td>{row.symbol}</td>
-                <td>{row.latestPrice}</td>              
                 <td>{row.companyName}</td> 
-                <td>{row.sector}</td>                 
-                <td>{row.marketCap}</td>                             
+                <td>{row.latestPrice}</td>              
+                <td>{row.sector}</td>      
+                <td><div
+                    style={{
+                        color: row.change < 0 ? '#ff2e00'
+                        : '#ffffff',                
+                    }}>{row.change}</div>
+                </td>                              
             </tr>
         );
     });

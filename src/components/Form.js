@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Input from '@material-ui/core/Input';
 
 class Form extends Component {
     constructor(props) {
@@ -30,12 +31,12 @@ class Form extends Component {
         return (
             <form>
                 <label>Add Ticker</label>
-                <input 
+                <Input 
                     type="text" 
                     name="ticker" 
                     value={ticker} 
                     onChange={this.handleChange}/>
-                <input 
+                <Input 
                     type="button" 
                     value="Submit" 
                     onClick={this.submitForm} />

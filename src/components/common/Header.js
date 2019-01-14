@@ -17,7 +17,6 @@ class Header extends Component {
                 eMail
               </NavItem>              
             </Nav>
-        
             </Navbar.Collapse>
             </Navbar>
           </div>
