@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-
 import Grid from './Grid';
+//import Grid from '@material-ui/core/Grid';
 import Form from './Form';
+import Button from '@material-ui/core/Button';
 import Header from './common/Header';
-
 
 class App extends Component {
     constructor(){
@@ -85,6 +85,18 @@ class App extends Component {
                  ></Grid>
                 
                  <Form handleSubmit={this.handleSubmit}/>   
+
+                 <Button variant="contained" color="primary">
+                    Hello World
+                </Button>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                    data={this.state.data} 
+                    contentasdasd
+                    ></Grid>
             </div>                 
         );
     }
