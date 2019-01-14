@@ -2,8 +2,9 @@
   "name": "relent",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bewilderedlapwing-8d47.azurewebsites.net/",
   "dependencies": {
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^3.3.7",
     "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.1",
@@ -13,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": ""
   },
   "eslintConfig": {
     "extends": "react-app"

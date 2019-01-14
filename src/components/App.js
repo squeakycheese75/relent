@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import Grid from './Grid';
 import Form from './Form';
+import Header from './common/Header';
 
 
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
         console.log('In componentDidMount');   
         //var refreshRate = this.state.user.settings.refresh * 1000;          
         //console.log('refreshRate is ' + refreshRate);   
-        setInterval(() => this.loadData(), 30000);
+        setInterval(() => this.loadData(), 60000);
         this.loadData(); // also load one immediately 
     }  
 
@@ -77,7 +78,8 @@ class App extends Component {
     render() {       
         console.log('Render');
         return (
-            <div className="container">                                  
+            <div className="container">  
+                 <Header/>                                
                  <Grid
                  data={this.state.data} 
                  ></Grid>
@@ -101,7 +103,7 @@ class App extends Component {
     handleSubmit = tickerData => {
         this.setState({
             tickerData: [...this.state.tickerData, tickerData]});        
-            //this.loadData();
+            this.fetchDataWithTicker(tickerData.ticker);
         };
         
         

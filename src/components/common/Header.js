@@ -1,20 +1,26 @@
-import React, { Component } from 'react';
+import React, { Component  } from 'react';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 class Header extends Component {
     render() {      
         return (
-            <nav className="navbar navbar-default">
-            <div className="container-fluid">               
-                    <img src="./images/buffalo.jpg" width={50} alt="sdfsdf"/>                
-                <ul className="nav navbar-nav">
-                    <li>Home</li>
-                    <li>Authors</li>
-                    <li>Marketing</li>
-                    <li>Carousel</li>
-                    <li>About us</li>
-                </ul>
-            </div>
-        </nav>
+            <div>
+            <Navbar inverse collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a href="#home">Relent</a>
+              </Navbar.Brand>
+            </Navbar.Header>
+            <Navbar.Collapse>
+            <Nav pullRight>
+              <NavItem eventKey={1} href="mailto:james_wooltorton@hotmail.com">
+                eMail
+              </NavItem>              
+            </Nav>
+        
+            </Navbar.Collapse>
+            </Navbar>
+          </div>
         );
     }
 }
