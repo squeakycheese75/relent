@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class Form extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class Form extends Component {
 
         return (
             <form>
-                <label>Add Ticker</label>
+                <InputLabel>Add Ticker</InputLabel>
                 <Input 
                     type="text" 
                     name="ticker" 

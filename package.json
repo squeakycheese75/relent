@@ -2,13 +2,16 @@
   "name": "relent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bewilderedlapwing-8d47.azurewebsites.net/",
+  "author": "squeakycheese",
   "dependencies": {
+    "@material-ui/icons": "^3.0.2",
     "bootstrap": "^3.3.7",
+    "material-ui-icons": "^1.0.0-beta.36",
     "react": "^16.6.1",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.1",
-    "react-scripts": "^2.1.3"
+    "react-scripts": "^2.1.3",
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",

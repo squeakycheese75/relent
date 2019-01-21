@@ -25,11 +25,11 @@ const GridBody = props => {
                 <td>{row.symbol}</td>
                 <td>{row.companyName}</td> 
                 <td>{row.latestPrice}</td>              
-                <td>{row.sector}</td>      
+                <td>{row.sector}</td>   
                 <td><div
                     style={{
                         color: row.change < 0 ? '#ff2e00'
-                        : '#ffffff',                
+                        : '#4C9900',                
                     }}>{row.change}</div>
                 </td>                              
             </tr>
@@ -39,7 +39,7 @@ const GridBody = props => {
     return <tbody>{rows}</tbody>;
 }
 
-class Grid extends Component {
+class AppGrid extends Component {
     render() {
         const { data } = this.props;
 
@@ -54,4 +54,4 @@ class Grid extends Component {
     }
 }
 
-export default Grid;
+export default AppGrid;

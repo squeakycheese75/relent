@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import Grid from './Grid';
-//import Grid from '@material-ui/core/Grid';
+import AppGrid from './AppGrid';
+import Grid from '@material-ui/core/Grid';
 import Form from './Form';
-import Button from '@material-ui/core/Button';
-import Header from './common/Header';
+//import Button from '@material-ui/core/Button';
+//import Header from './common/Header';
+import AppHeader from './common/AppHeader';
+
 //import Header from '@material-ui/core/CardHeader';
 
 class App extends Component {
@@ -53,6 +55,8 @@ class App extends Component {
     async fetchDataWithTicker(ticker){    
         console.log('In fetchDataWithTicker');    
         var url = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
+        //var url = "http://192.168.1.6:3001/prices/" + ticker;
+        debugger;
         console.log(url);
         fetch(url)       
         .then(res => res.json())
@@ -79,17 +83,19 @@ class App extends Component {
     render() {       
         console.log('Render');
         return (
-            <div className="container">  
-                 <Header />                            
-                 <Grid
+            <div className="container">                    
+                 <AppHeader />                            
+                 <AppGrid
                  data={this.state.data} 
-                 ></Grid>
+                 ></AppGrid>
                 
                  <Form handleSubmit={this.handleSubmit}/>   
-
-                 <Button variant="contained" color="primary">
-                    Hello World
-                </Button>
+                    <Grid
+    container
+    direction="row"
+    justify="center"
+    alignItems="center"></Grid>
+        Some Grid content
             </div>                 
         );
     }
