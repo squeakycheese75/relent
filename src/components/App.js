@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import AppGrid from './AppGrid';
-import Grid from '@material-ui/core/Grid';
-import Form from './Form';
-//import Button from '@material-ui/core/Button';
-//import Header from './common/Header';
-import AppHeader from './common/AppHeader';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+//import AppGrid from './AppGrid';
+import Header from './common/Header';
+import AboutPage from './about/AboutPage';
+import HomePage  from './home/HomePage';
+import ManagePage from './manage/ManagePage';
+import LoginPage from './login/LoginPage';
+import TickerPage from './tickers/TickerPage';
 
-//import Header from '@material-ui/core/CardHeader';
+require('dotenv').config()
 
 class App extends Component {
     constructor(){
@@ -17,7 +19,29 @@ class App extends Component {
                 tickerData: [ {                
                     'ticker': 'aapl'
                 }],
-                data: [],
+                data: [
+                    {
+                        'companyName': 'Apple',
+                        'symbol': 'AAPL',
+                        'sector': 'Tech',
+                        'latestPrice': '208.49',
+                        'change': '2.99'
+                    },
+                    {
+                        'companyName': 'Aptiv',
+                        'symbol': 'APTV',
+                        'sector': 'Tech',
+                        'latestPrice': '77.88',
+                        'change': '-0.34'
+                    },
+                    {
+                      'companyName': 'Microsoft Plc',
+                      'symbol': 'MSFT',
+                      'sector': 'Tech',
+                      'latestPrice': '413.33',
+                      'change': '0.08'
+                  }
+                ] ,
                 user: {
                     sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
                     username: 'SqueakyCheese',                    
@@ -44,7 +68,8 @@ class App extends Component {
     }  
 
     loadData() {
-        this.setState({data: []}); 
+        //I commented this out to test.  Probably not needed as state should come from api
+        //this.setState({data: []}); 
 
         for (var j = 0; j < this.state.tickerData.length; j++){
             console.log(this.state.tickerData[j].ticker);
@@ -54,9 +79,10 @@ class App extends Component {
 
     async fetchDataWithTicker(ticker){    
         console.log('In fetchDataWithTicker');    
-        var url = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
-        //var url = "http://192.168.1.6:3001/prices/" + ticker;
-        debugger;
+        //var url = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
+        var url = "http://localhost:3001/prices/" + ticker;
+        //var url = process.env.REACT_APP_PRICES_API + ticker;
+        //debugger;
         console.log(url);
         fetch(url)       
         .then(res => res.json())
@@ -83,22 +109,26 @@ class App extends Component {
     render() {       
         console.log('Render');
         return (
-            <div className="container">                    
-                 <AppHeader />                            
-                 <AppGrid
-                 data={this.state.data} 
-                 ></AppGrid>
-                
-                 <Form handleSubmit={this.handleSubmit}/>   
-                    <Grid
-    container
-    direction="row"
-    justify="center"
-    alignItems="center"></Grid>
-        Some Grid content
-            </div>                 
+            <Router>
+                <div>
+                    <Header />     
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/about" component={AboutPage} />
+                    <Route path="/manage" component={ManagePage} />
+                    <Route path="/login" component={LoginPage} />
+                    <Route path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
+                                  
+                </div>
+            </Router>             
         );
     }
+
+                 /*
+                 <AppGrid data={this.state.data} ></AppGrid>
+                 <AppForm handleSubmit={this.handleSubmit}/>   
+                 
+                 */
+                
 
     
     removeTicker = index => {

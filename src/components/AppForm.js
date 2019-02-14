@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
-class Form extends Component {
+class AppForm extends Component {
     constructor(props) {
         super(props);
-        
+
         this.initialState = {
             ticker: ''
         };
@@ -27,10 +27,12 @@ class Form extends Component {
     }
 
     render() {
+        //const { classes } = this.props;
         const { ticker } = this.state; 
 
         return (
-            <form>
+            <div>
+<               form>
                 <InputLabel>Add Ticker</InputLabel>
                 <Input 
                     type="text" 
@@ -42,8 +44,10 @@ class Form extends Component {
                     value="Submit" 
                     onClick={this.submitForm} />
             </form>
+           
+            </div>
         );
     }
 }
 
-export default Form;
+export default AppForm;

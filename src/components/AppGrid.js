@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import color from '@material-ui/core/colors/amber';
-//import ReactTable from "react-table";
+import {Table} from 'react-bootstrap';
 //import "react-table/react-table.css;
 
 const GridHeader = () => { 
@@ -28,14 +28,14 @@ const GridBody = props => {
                 <td>{row.sector}</td>   
                 <td><div
                     style={{
-                        color: row.change < 0 ? '#ff2e00'
+                        color: row.change < 0 
+                        ? '#ff2e00'
                         : '#4C9900',                
                     }}>{row.change}</div>
                 </td>                              
             </tr>
         );
     });
-
     return <tbody>{rows}</tbody>;
 }
 
@@ -44,12 +44,14 @@ class AppGrid extends Component {
         const { data } = this.props;
 
         return (
-            <table className="table table-striped">
+            <div className="container-fluid"> 
+            <Table responsive striped bordered condensed hover>
                 <GridHeader />
                 <GridBody 
                     data={data} 
                 />
-            </table>
+            </Table>
+            </div>
         );
     }
 }
