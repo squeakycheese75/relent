@@ -1,5 +1,5 @@
 import React from 'react';
-import AppGrid from '../AppGrid';
+import AppGrid from './AppGrid';
 
 class TickerPage extends React.Component {
     render() {
@@ -7,8 +7,8 @@ class TickerPage extends React.Component {
 
         return (
             <div className="container-fluid">   
-            <AppGrid data={this.props.data}/>
-             </div>
+                <AppGrid data={this.props.data}/>
+            </div>
             );
     }
 }

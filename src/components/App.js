@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-//import AppGrid from './AppGrid';
 import Header from './common/Header';
 import AboutPage from './about/AboutPage';
 import HomePage  from './home/HomePage';
@@ -112,10 +111,12 @@ class App extends Component {
             <Router>
                 <div>
                     <Header />     
+
                     <Route exact path="/" component={HomePage} />
                     <Route path="/about" component={AboutPage} />
-                    <Route path="/manage" component={ManagePage} />
+                    <Route path="/manage" render={() => (<ManagePage data={this.state.tickerData}/>)}  />
                     <Route path="/login" component={LoginPage} />
+
                     <Route path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
                                   
                 </div>
@@ -124,6 +125,7 @@ class App extends Component {
     }
 
                  /*
+                 <Route path="/manage" component={ManagePage} />
                  <AppGrid data={this.state.data} ></AppGrid>
                  <AppForm handleSubmit={this.handleSubmit}/>   
                  

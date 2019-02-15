@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-//import color from '@material-ui/core/colors/amber';
 import {Table} from 'react-bootstrap';
-//import "react-table/react-table.css;
 
 const GridHeader = () => { 
     return (

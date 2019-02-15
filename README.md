@@ -51,3 +51,5 @@ Add keys for the following:
 
 REACT_APP_DEV_API_URL
 
+**Note:  Remember to prefix them with REACT_APP for dotenv to work!**
+

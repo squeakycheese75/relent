@@ -32,7 +32,7 @@ class AppForm extends Component {
 
         return (
             <div>
-<               form>
+                <form>
                 <InputLabel>Add Ticker</InputLabel>
                 <Input 
                     type="text" 
