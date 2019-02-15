@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from './common/Header';
-import AboutPage from './about/AboutPage';
-import HomePage  from './home/HomePage';
-import ManagePage from './manage/ManagePage';
-import LoginPage from './login/LoginPage';
-import TickerPage from './tickers/TickerPage';
+import Header from './components/common/Header';
+import AboutPage from './components/about/AboutPage';
+import HomePage  from './components/home/HomePage';
+import ManagePage from './components/manage/ManagePage';
+import LoginPage from './components/login/LoginPage';
+import TickerPage from './components/tickers/TickerPage';
 
 require('dotenv').config()
 
