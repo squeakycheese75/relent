@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Button, FormControl, InputGroup} from 'react-bootstrap';
+import {Table, Button} from 'react-bootstrap';
 
 
 const GridHeader = () => { 
@@ -18,10 +18,10 @@ const GridBody = props => {
     const rows = props.data.map((row, index) => {
         return (
             <tr key={index}>
-                <td>{row.ticker}</td>
+                <td>{row}</td>
                 <td> <Button variant="primary" type="submit">
                 Remove
-            </Button>
+                        </Button>
                 </td>                              
             </tr>
         );
@@ -30,21 +30,6 @@ const GridBody = props => {
 }
 
 
-const TickerSubmit  = props => {
-        return(
-            <div>
-            <InputGroup className="mb-3">
-                <FormControl
-                placeholder="Recipient's username"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-                />
-                <Button variant="outline-secondary">Button</Button>
-            </InputGroup>
-        </div>    
-        );
-}
-
 
 class SubscribeList extends Component {
     render() {
@@ -52,13 +37,13 @@ class SubscribeList extends Component {
 
         return (
             <div className="container-fluid"> 
+             <h2>Subscribed tickers:</h2>
             <Table responsive striped bordered condensed hover>
                 <GridHeader />
                 <GridBody 
                     data={data} 
                 />
             </Table>
-            <TickerSubmit/>
             </div>
         );
     }

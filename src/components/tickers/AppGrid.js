@@ -8,8 +8,8 @@ const GridHeader = () => {
                 <th>Symbol</th>
                 <th>CompanyName</th>
                 <th>LatestPrice</th>
-                <th>Sector</th>
                 <th>Change</th>
+                <th>Sector</th>
             </tr>
         </thead>
     );
@@ -23,14 +23,14 @@ const GridBody = props => {
                 <td>{row.symbol}</td>
                 <td>{row.companyName}</td> 
                 <td>{row.latestPrice}</td>              
-                <td>{row.sector}</td>   
                 <td><div
                     style={{
                         color: row.change < 0 
                         ? '#ff2e00'
                         : '#4C9900',                
                     }}>{row.change}</div>
-                </td>                              
+                </td>    
+                <td>{row.sector}</td>                             
             </tr>
         );
     });

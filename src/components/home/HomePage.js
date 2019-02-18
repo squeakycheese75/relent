@@ -7,11 +7,8 @@ const HomePage =(props) => {
         <div  className="container-fluid">
         <Jumbotron>
             <h1>Welcome to Relent</h1>
+            <p>A simple mobile-first site for keeping track of your favourite prices.</p>
             <p>
-            A simple mobile-first site for keeping track of your favourite prices.
-            </p>
-            <p>
-             <Link to="about" className="btn btn-primary btn-lg">Learn more</Link>
              <Link to="tickers" className="btn btn-primary btn-lg">Take me to the Prices</Link>
             </p>
       </Jumbotron>

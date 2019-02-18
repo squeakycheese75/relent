@@ -9,6 +9,7 @@ import TickerPage from './components/tickers/TickerPage';
 
 require('dotenv').config()
 
+
 class App extends Component {
     constructor(){
         console.log('In constructor');
@@ -18,6 +19,7 @@ class App extends Component {
                 tickerData: [ {                
                     'ticker': 'aapl'
                 }],
+                subscribedTickers: ['aapl'],
                 data: [
                     {
                         'companyName': 'Apple',
@@ -105,6 +107,22 @@ class App extends Component {
     }
 
 
+   
+
+    addNewTicker = (input) => {
+        if(input){
+            //Check it's not already in the list
+            var resval = this.state.subscribedTickers.some(item => input === item);
+            if (!resval){
+                this.setState(prevState => ({
+                    subscribedTickers : prevState.subscribedTickers.concat(input)
+                }));
+            }
+            //this.fetchDataWithTicker(tickerData.ticker);
+            //reloadData();
+        }
+    }
+
     render() {       
         console.log('Render');
         return (
@@ -114,7 +132,7 @@ class App extends Component {
 
                     <Route exact path="/" component={HomePage} />
                     <Route path="/about" component={AboutPage} />
-                    <Route path="/manage" render={() => (<ManagePage data={this.state.tickerData}/>)}  />
+                    <Route path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker}/>)}  />
                     <Route path="/login" component={LoginPage} />
 
                     <Route path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
@@ -122,17 +140,9 @@ class App extends Component {
                 </div>
             </Router>             
         );
-    }
+    }           
 
-                 /*
-                 <Route path="/manage" component={ManagePage} />
-                 <AppGrid data={this.state.data} ></AppGrid>
-                 <AppForm handleSubmit={this.handleSubmit}/>   
-                 
-                 */
-                
-
-    
+    /*
     removeTicker = index => {
         const { tickerData } = this.state;
     
@@ -142,12 +152,14 @@ class App extends Component {
             })
         });
     }
-
+    */
+/*
     handleSubmit = tickerData => {
         this.setState({
             tickerData: [...this.state.tickerData, tickerData]});        
             this.fetchDataWithTicker(tickerData.ticker);
         };
+        */
 }
 
 export default App;

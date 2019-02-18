@@ -27,9 +27,6 @@ const AboutPage =(props) => {
             <p>Constructed by <a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
             <p><a href="https://github.com/squeakycheese75/relent">GitHub Project</a></p>
             <p><a href="https://github.com/https://github.com/squeakycheese75/relent/blob/master/LICENSE/relent">License</a> </p>   
-                          
-            <p>Env vars for testing:</p>
-            <p> REACT_APP_SLACK_API_HOOK = {process.env.REACT_APP_SLACK_API_HOOK}</p>
 
             <SlackFeedback
                     onSubmit={sendToSlack}
