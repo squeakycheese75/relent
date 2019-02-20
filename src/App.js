@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from './components/common/Header';
+//import {Switch} from "react-router-dom";
+//import Header from './components/common/Header';
+import HeaderAlt from './components/common/HeaderAlt';
 import AboutPage from './components/about/AboutPage';
 import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
@@ -9,16 +11,12 @@ import TickerPage from './components/tickers/TickerPage';
 
 require('dotenv').config()
 
-
 class App extends Component {
     constructor(){
-        console.log('In constructor');
+        //console.log('In constructor');
         super();
         this.state = {
                 isLoading: true,
-                tickerData: [ {                
-                    'ticker': 'aapl'
-                }],
                 subscribedTickers: ['aapl'],
                 data: [
                     {
@@ -57,7 +55,7 @@ class App extends Component {
 
     componentWillMount(){
         console.log('In componentWillMount');
-        //this.fetchData();
+        //this.loadData();
     }
 
     componentDidMount(){
@@ -71,11 +69,18 @@ class App extends Component {
     loadData() {
         //I commented this out to test.  Probably not needed as state should come from api
         //this.setState({data: []}); 
-
-        for (var j = 0; j < this.state.tickerData.length; j++){
-            console.log(this.state.tickerData[j].ticker);
-            this.fetchDataWithTicker(this.state.tickerData[j].ticker);
-          }         
+        console.log('In loadData',  this.state.subscribedTickers);   
+       
+        if (Array.isArray(this.state.subscribedTickers) || this.state.subscribedTickers.length) {
+            // array does not exist, is not an array, or is empty
+            console.log('Passed Check'); 
+            /*for (var j = 0; j < this.state.subscribedTickers.length; j++){
+                console.log(this.state.subscribedTickers[j].ticker);
+                this.fetchDataWithTicker(this.state.tickerData[j].ticker);
+              }*/
+            //this.fetchDataWithTicker(this.state.tickerData[j].ticker);   
+            this.fetchDataWithTicker(this.state.subscribedTickers); 
+          }
     }
 
     async fetchDataWithTicker(ticker){    
@@ -84,15 +89,17 @@ class App extends Component {
         var url = "http://localhost:3001/prices/" + ticker;
         //var url = process.env.REACT_APP_PRICES_API + ticker;
         //debugger;
-        console.log(url);
+        //var url = "http://localhost:3001/prices/" + ticker;
         fetch(url)       
         .then(res => res.json())
         .then(
           (result) => {
-            this.setState({
-              isLoading: false,
-              data: this.state.data.concat(result)
-            });
+            //this.setState(prevState => ({
+            //    data: result
+            //})
+            this.setState({data: this.state.data.concat(result)});
+            //)
+            //({data: this.state.data.concat(result)});
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -119,7 +126,7 @@ class App extends Component {
                 }));
             }
             //this.fetchDataWithTicker(tickerData.ticker);
-            //reloadData();
+            this.loadData();
         }
     }
 
@@ -128,15 +135,13 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <Header />     
-
+                    <HeaderAlt />     
+                
                     <Route exact path="/" component={HomePage} />
                     <Route path="/about" component={AboutPage} />
                     <Route path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker}/>)}  />
                     <Route path="/login" component={LoginPage} />
-
                     <Route path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
-                                  
                 </div>
             </Router>             
         );
@@ -153,13 +158,6 @@ class App extends Component {
         });
     }
     */
-/*
-    handleSubmit = tickerData => {
-        this.setState({
-            tickerData: [...this.state.tickerData, tickerData]});        
-            this.fetchDataWithTicker(tickerData.ticker);
-        };
-        */
 }
 
 export default App;

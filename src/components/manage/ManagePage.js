@@ -2,6 +2,7 @@ import React, {Component}  from 'react';
 import SubscribeList from './SubscribeList';
 import {Form, Button, FormControl, ControlLabel, FormGroup, Checkbox} from 'react-bootstrap';
 
+
  
 class SearchForm extends Component{
     state = {ticker: ''}
@@ -36,7 +37,7 @@ class SearchForm extends Component{
 
 const PreferencesForm  = props => {
         return(
-            <div className="container-fluid"s>
+            <div className="container-fluid">
                 <Form>
                 <h2>Preferences</h2>
                    
@@ -56,15 +57,21 @@ const PreferencesForm  = props => {
 class ManagePage extends React.Component{
 
     addNewTicker = (newTicker) => {
-        //console.log("In ManagePage: ", newTicker);
+        console.log("In ManagePage.addNewTicker with ", newTicker);
         this.props.onSubmit(newTicker)
+    }
+
+
+    removeTicker = (newTicker) => {
+        console.log("In ManagePage.removeTicker with ", newTicker);
+        //this.props.onSubmit(newTicker)
     }
 
     render(){
         return(
             <div className="container-fluid">
 
-            <SubscribeList data={this.props.data} />
+            <SubscribeList data={this.props.data} onSubmit={this.removeTicker}/>
             <SearchForm onSubmit={this.addNewTicker}/>
             <PreferencesForm/>
           </div>

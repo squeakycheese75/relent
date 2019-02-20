@@ -19,10 +19,7 @@ const GridBody = props => {
         return (
             <tr key={index}>
                 <td>{row}</td>
-                <td> <Button variant="primary" type="submit">
-                Remove
-                        </Button>
-                </td>                              
+                <td><Button>Delete</Button> </td>                       
             </tr>
         );
     });
@@ -30,8 +27,13 @@ const GridBody = props => {
 }
 
 
-
 class SubscribeList extends Component {
+    state = {ticker: ''}
+    handleSubmit = (event) => {
+        event.preventDefault();
+        //Check here that it's in the api
+        this.props.onSubmit(this.state.ticker)
+    };
     render() {
         const { data } = this.props;
 
@@ -41,7 +43,7 @@ class SubscribeList extends Component {
             <Table responsive striped bordered condensed hover>
                 <GridHeader />
                 <GridBody 
-                    data={data} 
+                    data={data}
                 />
             </Table>
             </div>
