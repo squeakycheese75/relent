@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-//import {Switch} from "react-router-dom";
-//import Header from './components/common/Header';
+//import { withRouter } from "react-router-dom";
 import HeaderAlt from './components/common/HeaderAlt';
 import AboutPage from './components/about/AboutPage';
 import HomePage  from './components/home/HomePage';
@@ -17,6 +16,7 @@ class App extends Component {
         super();
         this.state = {
                 isLoading: true,
+                isAuthenticated: true,
                 subscribedTickers: ['aapl'],
                 data: [
                     {

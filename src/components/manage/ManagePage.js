@@ -1,6 +1,6 @@
 import React, {Component}  from 'react';
 import SubscribeList from './SubscribeList';
-import {Form, Button, FormControl, ControlLabel, FormGroup, Checkbox} from 'react-bootstrap';
+import {Form, Button, FormControl, FormGroup, ControlLabel}  from 'react-bootstrap';
 
 
  
@@ -38,16 +38,9 @@ class SearchForm extends Component{
 const PreferencesForm  = props => {
         return(
             <div className="container-fluid">
-                <Form>
                 <h2>Preferences</h2>
                    
                 <p>Set Refresh Time:  30</p>
-                <FormGroup>
-                <Checkbox checked readOnly>
-                            Checkbox
-                            </Checkbox>
-                            </FormGroup>
-                </Form>
                
         </div>    
         );
