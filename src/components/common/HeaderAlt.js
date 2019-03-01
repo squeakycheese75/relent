@@ -15,11 +15,6 @@ const AltHeader =(props) => {
           </Navbar.Header>
           <Navbar.Collapse>
           <Nav>  
-                <NavItem >
-                <LinkContainer to="/">
-                      <NavItem>Home</NavItem>
-                    </LinkContainer>
-                </NavItem> 
                 <NavItem>
                 <LinkContainer to="/tickers">
                       <NavItem>Tickers</NavItem>

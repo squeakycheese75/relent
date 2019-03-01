@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-//import { withRouter } from "react-router-dom";
+import { BrowserRouter as Switch, Route } from "react-router-dom";
 import HeaderAlt from './components/common/HeaderAlt';
 import AboutPage from './components/about/AboutPage';
 import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
 import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
+//import NotFound from './components/common/NotFound';
 
 require('dotenv').config()
 
@@ -15,91 +15,47 @@ class App extends Component {
         //console.log('In constructor');
         super();
         this.state = {
-                isLoading: true,
+                isLoaded: false,
                 isAuthenticated: true,
-                subscribedTickers: ['aapl'],
-                data: [
-                    {
-                        'companyName': 'Apple',
-                        'symbol': 'AAPL',
-                        'sector': 'Tech',
-                        'latestPrice': '208.49',
-                        'change': '2.99'
-                    },
-                    {
-                        'companyName': 'Aptiv',
-                        'symbol': 'APTV',
-                        'sector': 'Tech',
-                        'latestPrice': '77.88',
-                        'change': '-0.34'
-                    },
-                    {
-                      'companyName': 'Microsoft Plc',
-                      'symbol': 'MSFT',
-                      'sector': 'Tech',
-                      'latestPrice': '413.33',
-                      'change': '0.08'
-                  }
-                ] ,
+                subscribedTickers: ['RUFFER.RTRF.O.ACC'],
+                data: [] ,
                 user: {
                     sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
                     username: 'SqueakyCheese',                    
                     settings: {
                         refresh: '30'
                     }                    
-                },
-                predata: [],
-
+                }
         }
     }
 
     componentWillMount(){
-        console.log('In componentWillMount');
-        //this.loadData();
+        this.loadData();
     }
 
     componentDidMount(){
-        console.log('In componentDidMount');   
-        //var refreshRate = this.state.user.settings.refresh * 1000;          
-        //console.log('refreshRate is ' + refreshRate);   
-        setInterval(() => this.loadData(), 60000);
+        var refreshRate = this.state.user.settings.refresh * 1000;          
+        setInterval(() => this.loadData(), refreshRate);
         this.loadData(); // also load one immediately 
     }  
 
     loadData() {
-        //I commented this out to test.  Probably not needed as state should come from api
-        //this.setState({data: []}); 
-        console.log('In loadData',  this.state.subscribedTickers);   
-       
         if (Array.isArray(this.state.subscribedTickers) || this.state.subscribedTickers.length) {
             // array does not exist, is not an array, or is empty
-            console.log('Passed Check'); 
-            /*for (var j = 0; j < this.state.subscribedTickers.length; j++){
-                console.log(this.state.subscribedTickers[j].ticker);
-                this.fetchDataWithTicker(this.state.tickerData[j].ticker);
-              }*/
-            //this.fetchDataWithTicker(this.state.tickerData[j].ticker);   
-            this.fetchDataWithTicker(this.state.subscribedTickers); 
+            this.fetchDataWithTicker(); 
           }
     }
 
-    async fetchDataWithTicker(ticker){    
-        console.log('In fetchDataWithTicker');    
-        //var url = "https://api.iextrading.com/1.0/stock/" + ticker + "/quote";
-        var url = "http://localhost:3001/prices/" + ticker;
-        //var url = process.env.REACT_APP_PRICES_API + ticker;
-        //debugger;
-        //var url = "http://localhost:3001/prices/" + ticker;
+    async fetchDataWithTicker(){   
+        var url = "http://127.0.0.1:3001/prices/" + this.state.subscribedTickers.join(",");
         fetch(url)       
         .then(res => res.json())
         .then(
           (result) => {
-            //this.setState(prevState => ({
-            //    data: result
-            //})
-            this.setState({data: this.state.data.concat(result)});
-            //)
-            //({data: this.state.data.concat(result)});
+            this.setState({
+                isLoaded: true,
+                data: result
+              });
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -111,39 +67,37 @@ class App extends Component {
             });
           }
         )
-    }
-
-
-   
+        }
 
     addNewTicker = (input) => {
         if(input){
             //Check it's not already in the list
             var resval = this.state.subscribedTickers.some(item => input === item);
             if (!resval){
-                this.setState(prevState => ({
-                    subscribedTickers : prevState.subscribedTickers.concat(input)
-                }));
+                this.setState(prevState => ({subscribedTickers : prevState.subscribedTickers.concat(input)}), () => 
+                    {
+                        //Reload data in callback.
+                        this.loadData();
+                    });                
             }
-            //this.fetchDataWithTicker(tickerData.ticker);
-            this.loadData();
         }
     }
 
-    render() {       
-        console.log('Render');
+    render() {      
         return (
-            <Router>
+            <Switch>
                 <div>
                     <HeaderAlt />     
                 
                     <Route exact path="/" component={HomePage} />
-                    <Route path="/about" component={AboutPage} />
-                    <Route path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker}/>)}  />
-                    <Route path="/login" component={LoginPage} />
-                    <Route path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
+                    <Route  path="/about" component={AboutPage} />
+                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker}/>)}  />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
+                    { /* Finally, catch all unmatched routes */ }
+                    {/* <Route exact component={NotFound} /> */}
                 </div>
-            </Router>             
+            </Switch>             
         );
     }           
 

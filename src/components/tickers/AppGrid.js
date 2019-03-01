@@ -16,10 +16,14 @@ const GridHeader = () => {
 }
 
 
+
 const GridBody = props => { 
+    function fetchDetails(index) {
+        console.log(index);
+    };
     const rows = props.data.map((row, index) => {
         return (
-            <tr key={index}>
+            <tr key={index} onClick={() => fetchDetails(row.symbol)}>
                 <td>{row.symbol}</td>
                 <td>{row.companyName}</td> 
                 <td>{row.latestPrice}</td>              
@@ -39,6 +43,7 @@ const GridBody = props => {
 
 class AppGrid extends Component {
     render() {
+     
         const { data } = this.props;
 
         return (
