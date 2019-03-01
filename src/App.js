@@ -17,7 +17,7 @@ class App extends Component {
         this.state = {
                 isLoaded: false,
                 isAuthenticated: true,
-                subscribedTickers: ['RUFFER.RTRF.O.ACC'],
+                subscribedTickers: ['AAPL'],
                 data: [] ,
                 user: {
                     sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
@@ -47,7 +47,8 @@ class App extends Component {
     }
 
     async fetchDataWithTicker(){   
-        var url = "http://127.0.0.1:3001/prices/" + this.state.subscribedTickers.join(",");
+        var url = "https://relentapi.azurewebsites.net/prices/" + this.state.subscribedTickers.join(",");
+        //var url = "http://127.0.0.1:5000/prices/" + this.state.subscribedTickers.join(",");
         fetch(url)       
         .then(res => res.json())
         .then(
