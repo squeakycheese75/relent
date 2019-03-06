@@ -1,24 +1,44 @@
 import React, {Component}  from 'react';
 import SubscribeList from './SubscribeList';
-import {Form, Button, FormControl, FormGroup, ControlLabel}  from 'react-bootstrap';
-
-
+import {Form, Button, FormControl, FormGroup, ControlLabel, DropdownButton, MenuItem}  from 'react-bootstrap';
  
 class SearchForm extends Component{
-    state = {ticker: ''}
+    state = {
+                ticker: "",
+                title: "FTSE"
+            }
+
     handleSubmit = (event) => {
         event.preventDefault();
         //Check here that it's in the api
         this.props.onSubmit(this.state.ticker)
     };
+    onTargetSelect(target) {
+        console.log('onTargetSelect: ', target);
+        this.setState({ title: target })
+    };
+    
     render(){
         return(
             <div className="container-fluid">           
             <h2>Add new tickers:</h2>
                 <Form inline onSubmit={this.handleSubmit}>
+                <FormGroup>
+                <ControlLabel>Ticker Search:</ControlLabel>{' '}
+                    <DropdownButton
+                        bsStyle="success"
+                        title={this.state.title}
+                        id="dropdown-basic-1"
+                        onSelect = {(event => this.onTargetSelect(event))}
+                         >
+                        <MenuItem eventKey="NASDAQ">NASDAQ</MenuItem>
+                        <MenuItem eventKey="FTSE">FTSE</MenuItem>
+                        {/* <MenuItem divider />
+                        <MenuItem eventKey="CRYPTO">CRYPTO</MenuItem> */}
+                    </DropdownButton>
+                </FormGroup>
                 <FormGroup controlId="formInlineName" >
                     <ControlLabel>Ticker Search:</ControlLabel>{' '}
-                
                     <FormControl  
                         type="text" 
                         placeholder="Search for new tickers."
