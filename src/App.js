@@ -17,7 +17,7 @@ class App extends Component {
         this.state = {
                 isLoaded: false,
                 isAuthenticated: true,
-                subscribedTickers: ['AAPL'],
+                subscribedTickers: ['AAPL', 'ADM.L'],
                 data: [] ,
                 user: {
                     sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
