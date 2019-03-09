@@ -1,5 +1,7 @@
 import React from 'react';
-import SlackFeedback from 'react-slack-feedback';
+import {Jumbotron} from 'react-bootstrap';
+//import Map from './Map';
+
 
 //require('dotenv').config()
 //import { ok } from 'assert';
@@ -24,69 +26,67 @@ import SlackFeedback from 'react-slack-feedback';
 const AboutPage =(props) => {
     return (
         <div className="container-fluid">
-            <p>Constructed by <a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
+         <Jumbotron>
+           <h1>About Me</h1>
+            <p>Feedback to:<a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
+            <p>Currently living and working in....Chamonix</p>
+            {/* <Map /> */}
             <p><a href="https://github.com/squeakycheese75/relent">GitHub Project</a></p>
             <p><a href="https://github.com/https://github.com/squeakycheese75/relent/blob/master/LICENSE/relent">License</a> </p>   
-
-            <SlackFeedback
-                    onSubmit={sendToSlack}
-                    onImageUpload={uploadImage}
-                    user="SqueakyCheese"
-                    emoji=":bug:"
-                    channel="#feedback"
-                />
+            <p>Version 0.1 beta</p>
+            </Jumbotron>
         </div>
     );
 };
 
 
-function sendToSlack(payload) {
-    fetch(process.env.REACT_APP_SLACK_API_HOOK, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-      },
-      body: JSON.stringify(payload)
-    }).then(res => JSON.parse(res))
-      .then(res => {
-        console.log(res.status, res.statusText);
-        if (res.status >= 200 && res.status < 300) {
-          this.sent();
-        } else {
-          this.error(res);
-        }
-      });
-      }
+// function sendToSlack(payload) {
+//     fetch(process.env.REACT_APP_SLACK_API_HOOK, {
+//       method: 'post',
+//       headers: {
+//         'Accept': 'application/json, text/plain, */*',
+//       },
+//       body: JSON.stringify(payload)
+//     }).then(res => JSON.parse(res))
+//       .then(res => {
+//         console.log(res.status, res.statusText);
+//         if (res.status >= 200 && res.status < 300) {
+//           this.sent();
+//         } else {
+//           this.error(res);
+//         }
+//       });
+//       }
 
   
-  /**
-   * Upload image to server
-   * @method uploadImage
-   * @param  {File} file
-   * @return {null}
-   */
+//   /**
+//    * Upload image to server
+//    * @method uploadImage
+//    * @param  {File} file
+//    * @return {null}
+//    */
   
-  function uploadImage(file) {
-    var form = new FormData();
-    form.append('image', file);
+//   function uploadImage(file) {
+//     var form = new FormData();
+//     form.append('image', file);
   
-    fetch(process.env.REACT_APP_SLACK_API_HOOK, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-      },
-      body: form
-    })
-      .then(res => {
-        console.log(res.status, res.statusText);
-        if (res.status < 200 || res.status >= 300) {
-          this.uploadError(res.statusText);
-        }
+//     fetch(process.env.REACT_APP_SLACK_API_HOOK, {
+//       method: 'POST',
+//       headers: {
+//         'Accept': 'application/json, text/plain, */*',
+//       },
+//       body: form
+//     })
+//       .then(res => {
+//         console.log(res.status, res.statusText);
+//         if (res.status < 200 || res.status >= 300) {
+//           this.uploadError(res.statusText);
+//         }
   
-        return res.json();
-      })
-      .then(url => this.imageUploaded(url));
-  }
+//         return res.json();
+//       })
+//       .then(url => this.imageUploaded(url));
+//   }
   
 
 

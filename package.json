@@ -7,14 +7,13 @@
     "@material-ui/icons": "^3.0.2",
     "bootstrap": "^3.4.1",
     "dotenv": "^6.2.0",
-    "material-ui-icons": "^1.0.0-beta.36",
+    "google-map-react": "^1.1.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
-    "react-slack-feedback": "^1.1.4",
+    "react-scripts": "^2.1.8",
     "typeface-roboto": "0.0.54"
   },
   "scripts": {

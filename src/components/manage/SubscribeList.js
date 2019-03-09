@@ -13,17 +13,27 @@ const GridHeader = () => {
     );
 }
 
-
-const GridBody = props => { 
-    const rows = props.data.map((row, index) => {
-        return (
-            <tr key={index}>
-                <td>{row}</td>
-                <td><Button>Delete</Button> </td>                       
-            </tr>
-        );
-    });
-    return <tbody>{rows}</tbody>;
+class GridBodyClass extends Component{
+    constructor(props) {
+        super(props);
+        this.state = this.initialState;
+    }
+    removeTicker = (index) => {
+        //event.preventDefault();
+        console.log("In GridBodyClass  removeTicker with ", index);
+        this.props.onSubmit(index)
+    };
+    render(){
+        const rows = this.props.data.map((row, index) => {
+            return (
+                <tr key={index}>
+                    <td>{row}</td>
+                    <td><Button onClick={() => this.removeTicker(row)}>Delete</Button></td> 
+                </tr>
+            );
+        });
+        return <tbody>{rows}</tbody>
+    };
 }
 
 
@@ -34,6 +44,10 @@ class SubscribeList extends Component {
         //Check here that it's in the api
         this.props.onSubmit(this.state.ticker)
     };
+    removeItem = (index) => {
+        //console.log('In remove item  with ', event);
+        this.props.onSubmit(index)
+    };
     render() {
         const { data } = this.props;
 
@@ -42,8 +56,8 @@ class SubscribeList extends Component {
              <h2>Subscribed tickers:</h2>
             <Table responsive striped bordered condensed hover>
                 <GridHeader />
-                <GridBody 
-                    data={data}
+                <GridBodyClass
+                    data={data} onSubmit={this.removeItem}
                 />
             </Table>
             </div>
