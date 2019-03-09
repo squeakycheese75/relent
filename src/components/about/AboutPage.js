@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron} from 'react-bootstrap';
+//import {Jumbotron} from 'react-bootstrap';
 //import Map from './Map';
 
 
@@ -26,15 +26,13 @@ import {Jumbotron} from 'react-bootstrap';
 const AboutPage =(props) => {
     return (
         <div className="container-fluid">
-         <Jumbotron>
            <h1>About Me</h1>
             <p>Feedback to:<a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
-            <p>Currently living and working in....Chamonix</p>
+            <p>Currently living and working in.... <s> London</s>, <s>Berlin</s>, <s>Barcelona</s>, Chamonix</p>
             {/* <Map /> */}
             <p><a href="https://github.com/squeakycheese75/relent">GitHub Project</a></p>
             <p><a href="https://github.com/https://github.com/squeakycheese75/relent/blob/master/LICENSE/relent">License</a> </p>   
             <p>Version 0.1 beta</p>
-            </Jumbotron>
         </div>
     );
 };
