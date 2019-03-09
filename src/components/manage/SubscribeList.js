@@ -28,7 +28,7 @@ class GridBodyClass extends Component{
             return (
                 <tr key={index}>
                     <td>{row}</td>
-                    <td><Button onClick={() => this.removeTicker(index)}>Delete</Button></td> 
+                    <td><Button onClick={() => this.removeTicker(row)}>Delete</Button></td> 
                 </tr>
             );
         });

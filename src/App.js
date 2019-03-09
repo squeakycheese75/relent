@@ -84,19 +84,9 @@ class App extends Component {
     }
 
     removeTicker = (index) => {
-        //Replace with filter as this is changing the state directly.  
-        var array = this.state.subscribedTickers; // make a separate copy of the array
-        if (index !== -1) {
-          array.splice(index, 1);
-          this.setState({subscribedTickers: array}, () => {
+        this.setState(prevState => ({ subscribedTickers: prevState.subscribedTickers.filter(ticker => ticker !== index) }), ()=> {
             this.loadData();
-          });
-        }
-
-        // var array = this.state.subscribedTickers.filter(value => value === index )
-        // this.setState({subscribedTickers: array}, () => {
-        //          this.loadData();
-        //     });
+        });
     }
 
     render() {      
