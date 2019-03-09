@@ -33,8 +33,12 @@ class SearchForm extends Component{
                          >
                         <MenuItem eventKey="NASDAQ">NASDAQ</MenuItem>
                         <MenuItem eventKey="FTSE">FTSE</MenuItem>
-                        {/* <MenuItem divider />
-                        <MenuItem eventKey="CRYPTO">CRYPTO</MenuItem> */}
+                        <MenuItem divider />
+                        <MenuItem eventKey="SOON">*Coming soon*</MenuItem>
+                        <MenuItem eventKey="CRYPTO">CRYPTO</MenuItem>
+                        <MenuItem eventKey="FUNDS">FUNDS</MenuItem>
+                        <MenuItem eventKey="FX">FX</MenuItem>
+                        <MenuItem eventKey="DERIVED">DERIVED</MenuItem>
                     </DropdownButton>
                 </FormGroup>
                 <FormGroup controlId="formInlineName" >
@@ -70,14 +74,14 @@ const PreferencesForm  = props => {
 class ManagePage extends React.Component{
 
     addNewTicker = (newTicker) => {
-        console.log("In ManagePage.addNewTicker with ", newTicker);
+        //console.log("In ManagePage.addNewTicker with ", newTicker);
         this.props.onSubmit(newTicker)
     }
 
 
-    removeTicker = (newTicker) => {
-        console.log("In ManagePage.removeTicker with ", newTicker);
-        //this.props.onSubmit(newTicker)
+    removeTicker = (event) => {
+        //console.log("In ManagePage.removeTicker with ", event);
+        this.props.removeTicker(event)
     }
 
     render(){

@@ -12,7 +12,6 @@ require('dotenv').config()
 
 class App extends Component {
     constructor(){
-        //console.log('In constructor');
         super();
         this.state = {
                 isLoaded: false,
@@ -84,6 +83,22 @@ class App extends Component {
         }
     }
 
+    removeTicker = (index) => {
+        //Replace with filter as this is changing the state directly.  
+        var array = this.state.subscribedTickers; // make a separate copy of the array
+        if (index !== -1) {
+          array.splice(index, 1);
+          this.setState({subscribedTickers: array}, () => {
+            this.loadData();
+          });
+        }
+
+        // var array = this.state.subscribedTickers.filter(value => value === index )
+        // this.setState({subscribedTickers: array}, () => {
+        //          this.loadData();
+        //     });
+    }
+
     render() {      
         return (
             <Switch>
@@ -92,7 +107,7 @@ class App extends Component {
                 
                     <Route exact path="/" component={HomePage} />
                     <Route  path="/about" component={AboutPage} />
-                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker}/>)}  />
+                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker} removeTicker={this.removeTicker} />)}  />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
                     { /* Finally, catch all unmatched routes */ }
@@ -101,18 +116,6 @@ class App extends Component {
             </Switch>             
         );
     }           
-
-    /*
-    removeTicker = index => {
-        const { tickerData } = this.state;
-    
-        this.setState({
-            tickerData: tickerData.filter((tickerData, i) => { 
-                return i !== index;
-            })
-        });
-    }
-    */
 }
 
 export default App;
