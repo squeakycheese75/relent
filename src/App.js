@@ -11,25 +11,51 @@ import TickerPage from './components/tickers/TickerPage';
 require('dotenv').config()
 
 class App extends Component {
-    constructor(){
-        super();
-        this.state = {
-                isLoaded: false,
-                isAuthenticated: true,
-                subscribedTickers: ['AAPL', 'ADM.L'],
-                data: [] ,
-                user: {
-                    sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
-                    username: 'SqueakyCheese',                    
-                    settings: {
-                        refresh: '30'
-                    }                    
-                }
-        }
+    state = {
+        hasError: false,
+        isLoaded: false,
+        isAuthenticated: true,
+        subscribedTickers: ['AAPL', 'ADM.L'],
+        data: [] ,
+        user: {
+            sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
+            username: 'SqueakyCheese',                    
+            settings: {
+                refresh: '300'
+            }                    
+        },
+        tickers: [],
+        exchanges: []
+    }
+
+    //Load component data
+    fetchTickers = () => {
+        fetch('http://127.0.0.1:5000/tickers/')
+        .then(res => res.json())
+        .then(allTickers => {
+            this.setState({
+                tickers : allTickers
+            })
+            //Might not setstate here
+        })//.then(console.log('done'))
+        //.then(res => console.log(this.state.tickers))
+        .then(res => this.determineUniqueExhanges())
+    }
+
+    determineUniqueExhanges = () => {
+        console.log(this.state.tickers);
+        const exchanges = this.state.tickers 
+        ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
+        : [];
+        exchanges.unshift(null);
+        this.setState({exchanges: exchanges})
+        //console.log(exchanges)
     }
 
     componentWillMount(){
+        this.fetchTickers();        
         this.loadData();
+        //this.determineUniqueExhanges();
     }
 
     componentDidMount(){
@@ -37,6 +63,11 @@ class App extends Component {
         setInterval(() => this.loadData(), refreshRate);
         this.loadData(); // also load one immediately 
     }  
+
+    componentDidCatch(error, info){
+        this.setState({hasError : true})
+        console.log(error, info)
+    }
 
     loadData() {
         if (Array.isArray(this.state.subscribedTickers) || this.state.subscribedTickers.length) {
@@ -89,7 +120,11 @@ class App extends Component {
         });
     }
 
-    render() {      
+    render() {
+        if (this.state.hasError){
+            return <h1>Oops, there's an error.</h1>;
+        }
+
         return (
             <Switch>
                 <div>
@@ -97,7 +132,7 @@ class App extends Component {
                 
                     <Route exact path="/" component={HomePage} />
                     <Route  path="/about" component={AboutPage} />
-                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker} removeTicker={this.removeTicker} />)}  />
+                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker} removeTicker={this.removeTicker} exchanges={this.state.exchanges} />)}  />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
                     { /* Finally, catch all unmatched routes */ }

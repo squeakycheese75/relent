@@ -3,31 +3,11 @@ import React from 'react';
 //import Map from './Map';
 
 
-//require('dotenv').config()
-//import { ok } from 'assert';
-//var cors = require('cors')
-
-//ES6 functional class component 
-/*class AboutPage extends React.Component{
-    render(){
-        return(
-            <div>
-                <h1>About</h1>
-                <p>
-                    React, Redux demo in es6
-                </p>
-            </div>
-        );
-    };
-}
-*/
-//ES6 Stateless component
-
 const AboutPage =(props) => {
     return (
         <div className="container-fluid">
-           <h1>About Me</h1>
-            <p>Feedback to:<a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
+           <h1>About</h1>
+            <p>Feedback to: <a href="mailto:james_wooltorton@hotmail.com">Jamie Wooltorton</a>.</p>
             <p>Currently living and working in.... <s> London</s>, <s>Berlin</s>, <s>Barcelona</s>, Chamonix</p>
             {/* <Map /> */}
             <p><a href="https://github.com/squeakycheese75/relent">GitHub Project</a></p>
