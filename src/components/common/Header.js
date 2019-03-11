@@ -3,7 +3,7 @@ import {Link } from "react-router-dom";
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
 
-const AltHeader =(props) => {
+const Header =(props) => {
     return (
     <div className="App">
         <Navbar default collapseOnSelect fluid>
@@ -33,9 +33,6 @@ const AltHeader =(props) => {
                 </Nav>
 
             <Nav pullRight>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
-                    </LinkContainer>
                     <LinkContainer to="/login">
                       <NavItem>Login</NavItem>
                     </LinkContainer>
@@ -48,4 +45,4 @@ const AltHeader =(props) => {
 
 }
 
-export default AltHeader;
+export default Header;

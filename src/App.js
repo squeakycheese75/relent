@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import HeaderAlt from './components/common/HeaderAlt';
+import Header from './components/common/Header';
 import AboutPage from './components/about/AboutPage';
 import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
@@ -25,7 +25,8 @@ class App extends Component {
             }                    
         },
         tickers: [],
-        exchanges: []
+        exchanges: [],
+        filteredTickers: []
     }
 
     //Load component data
@@ -43,13 +44,19 @@ class App extends Component {
     }
 
     determineUniqueExhanges = () => {
-        console.log(this.state.tickers);
+        //console.log(this.state.tickers);
         const exchanges = this.state.tickers 
         ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
         : [];
         exchanges.unshift(null);
         this.setState({exchanges: exchanges})
-        //console.log(exchanges)
+    }
+
+    filteredTickers = (input) => {
+        const filteredTickers = this.state.tickers.filter((h) => h.exchange === input);
+        const filterSUbscribedTickers = filteredTickers.filter(id => !this.state.subscribedTickers.includes(id.symbol));
+        this.setState({filteredTickers: filterSUbscribedTickers});
+        this.setState({input});
     }
 
     componentWillMount(){
@@ -101,6 +108,7 @@ class App extends Component {
         }
 
     addNewTicker = (input) => {
+        console.log('In App.addNewTicker with ', input)
         if(input){
             //Check it's not already in the list
             var resval = this.state.subscribedTickers.some(item => input === item);
@@ -128,11 +136,18 @@ class App extends Component {
         return (
             <Switch>
                 <div>
-                    <HeaderAlt />     
+                    <Header />     
                 
                     <Route exact path="/" component={HomePage} />
                     <Route  path="/about" component={AboutPage} />
-                    <Route  path="/manage" render={() => (<ManagePage data={this.state.subscribedTickers} onSubmit={this.addNewTicker} removeTicker={this.removeTicker} exchanges={this.state.exchanges} />)}  />
+                    <Route  path="/manage" render={() => 
+                        (<ManagePage 
+                            data={this.state.subscribedTickers} 
+                            addNewTicker={this.addNewTicker} 
+                            removeTicker={this.removeTicker} 
+                            exchanges={this.state.exchanges} 
+                            filteredTickers={this.filteredTickers}
+                            filteredTickersData={this.state.filteredTickers}/>)}  />
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
                     { /* Finally, catch all unmatched routes */ }
