@@ -31,11 +31,9 @@ class App extends Component {
 
     //Load component data
     fetchTickers = () => {
+        var url = "https://relentapi.azurewebsites.net/tickers/";
         //fetch('http://127.0.0.1:5000/tickers/')
-        fetch('http://relentapi.azurewebsites.net/tickers/', {
-            method: 'GET',  
-            headers: {'Content-Type': 'application/json,  charset=UTF-8'}
-        })
+        fetch(url)
         .then(res => res.json())
         .then(allTickers => {
             this.setState({
@@ -52,7 +50,7 @@ class App extends Component {
         const exchanges = this.state.tickers 
         ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
         : [];
-        //exchanges.unshift(null);
+        exchanges.unshift(null);
         this.setState({exchanges: exchanges})
     }
 
