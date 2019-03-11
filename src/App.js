@@ -21,7 +21,7 @@ class App extends Component {
             sessionId: 'ede7d095-428c-478d-9754-4cebbb08a855',
             username: 'SqueakyCheese',                    
             settings: {
-                refresh: '300'
+                refresh: '30'
             }                    
         },
         tickers: [],
@@ -31,7 +31,8 @@ class App extends Component {
 
     //Load component data
     fetchTickers = () => {
-        fetch('http://127.0.0.1:5000/tickers/')
+        //fetch('http://127.0.0.1:5000/tickers/')
+        fetch('http://relentapi.azurewebsites.net/tickers/')
         .then(res => res.json())
         .then(allTickers => {
             this.setState({
