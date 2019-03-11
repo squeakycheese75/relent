@@ -32,7 +32,6 @@ class ManagePage extends React.Component{
             
         return(
             <div className="container-fluid">
-
             <SubscribeList data={this.props.data} onSubmit={this.removeTicker}/>
             {/* <SearchForm onSubmit={this.addNewTicker}/> */}
             <TickerSearch exchanges={exchanges} filterExchanges={this.filteredTickers}/>

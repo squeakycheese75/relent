@@ -47,7 +47,7 @@ class AppGrid extends Component {
         const { data } = this.props;
 
         return (
-            <Table responsive striped bordered hover>
+            <Table striped bordered hover variant="dark">
                 <GridHeader />
                 <GridBody 
                     data={data} 

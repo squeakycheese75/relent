@@ -16,7 +16,7 @@ class TickerSearch extends Component{
     render(){
         const exchanges = this.props.exchanges || [];
         return(
-            <div className="container-fluid">           
+            <div>           
             <h2>Select tickers:</h2>
                 <Form inline onSubmit={this.handleSubmit}>
                 <FormGroup>

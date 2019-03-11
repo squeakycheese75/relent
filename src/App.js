@@ -32,6 +32,7 @@ class App extends Component {
     //Load component data
     fetchTickers = () => {
         var url = "https://relentapi.azurewebsites.net/tickers/";
+        //console.log('url', url)
         //fetch('http://127.0.0.1:5000/tickers/')
         fetch(url)
         .then(res => res.json())

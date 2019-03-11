@@ -44,8 +44,8 @@ class TickerSearchResults extends Component {
         const { data } = this.props;
 
         return (
-            <div className="container-fluid"> 
-            <Table responsive striped bordered condensed hover >
+            <div> 
+            <Table striped bordered hover variant="dark">
                 <TableHeader />
                 <TableBodyClass
                     data={data} onSubmit={this.addItem}
