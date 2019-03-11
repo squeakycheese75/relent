@@ -49,7 +49,7 @@ class App extends Component {
         const exchanges = this.state.tickers 
         ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
         : [];
-        exchanges.unshift(null);
+        //exchanges.unshift(null);
         this.setState({exchanges: exchanges})
     }
 

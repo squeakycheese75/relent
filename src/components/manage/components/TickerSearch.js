@@ -26,6 +26,7 @@ class TickerSearch extends Component{
                     value={this.state.selectedValue}
                     title={this.state.selectedValue}
                     onSelect = {(event => this.onTargetSelect(event))}
+                    id={this.state.selectedValue}
                     >
                     {exchanges.map((exc) =><MenuItem eventKey={exc} key={exc}>{exc}</MenuItem>)}
                     </DropdownButton>
