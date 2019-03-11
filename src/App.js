@@ -32,7 +32,10 @@ class App extends Component {
     //Load component data
     fetchTickers = () => {
         //fetch('http://127.0.0.1:5000/tickers/')
-        fetch('http://relentapi.azurewebsites.net/tickers/')
+        fetch('http://relentapi.azurewebsites.net/tickers/', {
+            method: 'GET',  
+            headers: {'Content-Type': 'application/json,  charset=UTF-8'}
+        })
         .then(res => res.json())
         .then(allTickers => {
             this.setState({
