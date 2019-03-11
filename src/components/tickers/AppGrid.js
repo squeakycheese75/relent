@@ -9,7 +9,7 @@ const GridHeader = () => {
                 <th>CompanyName</th>
                 <th>LatestPrice</th>
                 <th>Change</th>
-                <th>Sector</th>
+                {/* <th>Sector</th> */}
             </tr>
         </thead>
     );
@@ -34,7 +34,7 @@ const GridBody = props => {
                         : '#4C9900',                
                     }}>{row.change}</div>
                 </td>    
-                <td>{row.sector}</td>                             
+                {/* <td>{row.sector}</td>                              */}
             </tr>
         );
     });
@@ -47,14 +47,12 @@ class AppGrid extends Component {
         const { data } = this.props;
 
         return (
-            <div className="container-fluid"> 
-            <Table responsive striped bordered condensed hover>
+            <Table responsive striped bordered hover>
                 <GridHeader />
                 <GridBody 
                     data={data} 
                 />
             </Table>
-            </div>
         );
     }
 }
