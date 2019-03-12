@@ -15,7 +15,7 @@ const TableHeader = () => {
 
 class TableBodyClass extends Component{
     addTicker = (index) => {
-        console.log("In GridBodyClass  removeTicker with ", index);
+        //console.log("In GridBodyClass  removeTicker with ", index);
         this.props.onSubmit(index)
     };
     render(){
@@ -45,7 +45,7 @@ class TickerSearchResults extends Component {
 
         return (
             <div className="container-fluid"> 
-            <Table responsive striped bordered condensed hover >
+            <Table responsive striped bordered hover size="sm">   
                 <TableHeader />
                 <TableBodyClass
                     data={data} onSubmit={this.addItem}

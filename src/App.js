@@ -8,6 +8,7 @@ import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
 //import NotFound from './components/common/NotFound';
 
+
 require('dotenv').config()
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
     //Load component data
     fetchTickers = () => {
         var url = "https://relentapi.azurewebsites.net/tickers/";
+        //console.log('url', url)
         //fetch('http://127.0.0.1:5000/tickers/')
         fetch(url)
         .then(res => res.json())
@@ -137,9 +139,9 @@ class App extends Component {
 
         return (
             <Switch>
-                <div>
-                    <Header />     
-                
+                <div className="container-fluid">
+                    <Header />
+                    
                     <Route exact path="/" component={HomePage} />
                     <Route  path="/about" component={AboutPage} />
                     <Route  path="/manage" render={() => 
