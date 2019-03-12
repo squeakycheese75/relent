@@ -139,7 +139,7 @@ class App extends Component {
 
         return (
             <Switch>
-                <div className="container-fluid">
+                <div>
                     <Header />
                     
                     <Route exact path="/" component={HomePage} />
