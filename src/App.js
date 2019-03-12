@@ -6,7 +6,7 @@ import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
 import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
-//import NotFound from './components/common/NotFound';
+//import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 
 require('dotenv').config()
@@ -139,7 +139,7 @@ class App extends Component {
 
         return (
             <Switch>
-                <div className="container-fluid">
+                <div>
                     <Header />
                     
                     <Route exact path="/" component={HomePage} />

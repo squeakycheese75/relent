@@ -1,5 +1,7 @@
 import React from 'react';
-import AppGrid from './AppGrid';
+//import AppGrid from './AppGrid';
+import SortTable from './SortTable';
+//import PriceTable from './PriceTable';
 
 class TickerPage extends React.Component {
     render() {
@@ -7,7 +9,11 @@ class TickerPage extends React.Component {
 
         return (
             <div> 
-                <AppGrid data={this.props.data}/>
+                {/* <AppGrid data={this.props.data}/>
+                <br /> */}
+                <SortTable data={this.props.data}/>
+                {/* <br></br>
+                <PriceTable data={this.props.data}/> */}
             </div>
             );
     }
