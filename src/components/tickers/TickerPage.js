@@ -6,7 +6,7 @@ class TickerPage extends React.Component {
         //const { data } = this.props;
 
         return (
-            <div className="container-fluid">   
+            <div> 
                 <AppGrid data={this.props.data}/>
             </div>
             );

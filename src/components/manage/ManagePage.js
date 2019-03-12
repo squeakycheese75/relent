@@ -31,12 +31,17 @@ class ManagePage extends React.Component{
         }
             
         return(
-            <div className="container-fluid">
-            <SubscribeList data={this.props.data} onSubmit={this.removeTicker}/>
-            {/* <SearchForm onSubmit={this.addNewTicker}/> */}
-            <TickerSearch exchanges={exchanges} filterExchanges={this.filteredTickers}/>
-            {activeComponent} 
-            <PreferencesForm />
+            <div>
+                <br/>
+                <h4>Subscribed tickers:</h4>   
+                <SubscribeList data={this.props.data} onSubmit={this.removeTicker}/>
+                <br/>
+                <h4>Find new tickers:</h4>
+                <TickerSearch exchanges={exchanges} filterExchanges={this.filteredTickers}/>
+                {activeComponent} 
+                <br/>
+                 <h4>Preferences:</h4>
+                <PreferencesForm />
           </div>
         );
     };

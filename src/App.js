@@ -8,6 +8,7 @@ import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
 //import NotFound from './components/common/NotFound';
 
+
 require('dotenv').config()
 
 class App extends Component {
@@ -138,9 +139,9 @@ class App extends Component {
 
         return (
             <Switch>
-                <div>
-                    <Header />     
-                
+                <div className="container-fluid">
+                    <Header />
+                    
                     <Route exact path="/" component={HomePage} />
                     <Route  path="/about" component={AboutPage} />
                     <Route  path="/manage" render={() => 

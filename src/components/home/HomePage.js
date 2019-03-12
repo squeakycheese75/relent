@@ -4,7 +4,7 @@ import {Jumbotron} from 'react-bootstrap';
 
 const HomePage =(props) => {
     return (
-        <div  className="container-fluid">
+        <div>
         <Jumbotron>
             <h1>Welcome to Relent</h1>
             <p>A simple mobile-first site for keeping track of your favourite prices.</p>

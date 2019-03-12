@@ -53,8 +53,7 @@ class SubscribeList extends Component {
 
         return (
             <div className="container-fluid"> 
-             <h2>Subscribed tickers:</h2>
-            <Table responsive striped bordered condensed hover>
+            <Table responsive striped bordered hover size="sm">
                 <GridHeader />
                 <GridBodyClass
                     data={data} onSubmit={this.removeItem}
