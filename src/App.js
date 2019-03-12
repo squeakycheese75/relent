@@ -60,7 +60,7 @@ class App extends Component {
         const filteredTickers = this.state.tickers.filter((h) => h.exchange === input);
         const filterSUbscribedTickers = filteredTickers.filter(id => !this.state.subscribedTickers.includes(id.symbol));
         this.setState({filteredTickers: filterSUbscribedTickers});
-        this.setState({input});
+        this.setState({selectedExchange: input});
     }
 
     componentWillMount(){
@@ -121,6 +121,7 @@ class App extends Component {
                     {
                         //Reload data in callback.
                         this.loadData();
+                        this.filteredTickers(this.state.selectedExchange);
                     });                
             }
         }

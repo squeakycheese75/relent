@@ -18,7 +18,7 @@ const Header =() => {
                 </Nav>
                 <Nav pullright="true">
                     <Nav.Item >
-                        <Nav.Link>v0.1 beta</Nav.Link>
+                        <Nav.Link>v0.1.2 beta</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                     <Navbar.Brand href="https://github.com/squeakycheese75/relent">
