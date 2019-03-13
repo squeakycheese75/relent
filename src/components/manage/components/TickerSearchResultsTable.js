@@ -10,7 +10,7 @@ class TickerSearchResultsTable extends Component {
     };
     cellButton(cell) {
         return (
-           <Button 
+           <Button  size="sm"
               type="button" 
               onClick={() => 
               this.addItem(cell)  
@@ -25,9 +25,9 @@ class TickerSearchResultsTable extends Component {
       const { data } = this.props;
       return (
         <div className="searchtable">
-          <BootstrapTable ref='table' data={ data } headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover search size="sm" version='4' options={ { noDataText: 'Loading...' } }>
-              <TableHeaderColumn width='20%' dataField='symbol' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>              
-              <TableHeaderColumn width='40%' dataField='name'  dataSort={ true }  columnClassName= 'bstable'>Company Name</TableHeaderColumn> 
+          <BootstrapTable ref='table' data={ data } headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover search pagination size="sm" version='4' options={ { noDataText: 'Loading...' } }>
+              <TableHeaderColumn width='20%' dataField='symbol' isKey={ true } dataSort={ true } columnClassName='bstable'>Symbol</TableHeaderColumn>              
+              <TableHeaderColumn width='40%' dataField='name'  dataSort={ true }  columnClassName='bstable'>Company Name</TableHeaderColumn> 
               <TableHeaderColumn width='20%' dataField='symbol' dataFormat={this.cellButton.bind(this)}>Add</TableHeaderColumn>                           
           </BootstrapTable>
         </div>

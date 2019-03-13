@@ -10,7 +10,7 @@ class TickerSubscribedResults extends Component {
     };
     cellButton(cell) {
         return (
-           <Button 
+           <Button   size="sm"
               type="button" 
               onClick={() => 
               this.removeItem(cell)  
