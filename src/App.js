@@ -11,7 +11,10 @@ import TickerPage from './components/tickers/TickerPage';
 
 require('dotenv').config()
 
+
 class App extends Component {
+
+    
     state = {
         hasError: false,
         isLoaded: false,
