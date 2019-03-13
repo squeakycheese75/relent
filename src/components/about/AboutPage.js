@@ -13,6 +13,17 @@ const AboutPage =() => {
                 {/* <Map /> */}
 
                 <LinkedInBadge />
+                <p>
+                    <a href="https://github.com/squeakycheese75/relent">
+                        <img
+                            src="./images/github.png"
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                            alt="GitHub"
+                        /> version: 0.1.2 beta
+                        </a>
+                </p>
 
             </Jumbotron>
            

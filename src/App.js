@@ -11,7 +11,10 @@ import TickerPage from './components/tickers/TickerPage';
 
 require('dotenv').config()
 
+
 class App extends Component {
+
+    
     state = {
         hasError: false,
         isLoaded: false,
@@ -112,7 +115,7 @@ class App extends Component {
         }
 
     addNewTicker = (input) => {
-        console.log('In App.addNewTicker with ', input)
+        //console.log('In App.addNewTicker with ', input)
         if(input){
             //Check it's not already in the list
             var resval = this.state.subscribedTickers.some(item => input === item);

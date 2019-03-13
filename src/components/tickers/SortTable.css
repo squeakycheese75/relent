@@ -1,7 +1,45 @@
-.td-column-price-down{
+.td-column-size{
+    font-size: small;
+    font-weight: bold;
+   }
+
+.td-column-price-down {
+    /* animation: blinker 1s linear infinite; */
     color:#ff2e00;
-}
+  }
+  
+  @keyframes blinker { 
+    50% { opacity: 0; }
+  }
 
 .td-column-price-up{
     color:#4C9900;
+}
+
+.bstable-header-bold{
+    font-weight: bold;
+}
+
+.twenty {
+    width: 20%
+}
+
+.forty {
+    width: 40%
+}
+
+.bstable{
+    font-size: small;
+}
+
+.vertical-align-middle { 
+    vertical-align: middle; 
+}
+
+.padding-bottom-3 {
+    padding-bottom: 3px;
+}
+
+.material-icons {
+    margin-left: -5px;
 }
