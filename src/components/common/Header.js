@@ -17,7 +17,7 @@ const Header =() => {
                     <LinkContainer to="about"><Button>About</Button></LinkContainer>
                 </Nav>
                 <Nav pullright="true">
-                    <Nav.Item >
+                    {/* <Nav.Item >
                         <Nav.Link>v0.1.2 beta</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -30,7 +30,7 @@ const Header =() => {
                             alt="GitHub"
                         />
                         </Navbar.Brand>
-                    </Nav.Item>
+                    </Nav.Item> */}
                     <LinkContainer to="login"><Button>Login</Button></LinkContainer>
                 </Nav>
             </Navbar.Collapse>
