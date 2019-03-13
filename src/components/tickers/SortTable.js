@@ -10,12 +10,9 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
 
 
 function priceFormatter(cell) {
-  //return cell > 0 ?`+${cell}` : `${cell}`;
-  //return cell > 0 ? '+'+cell : cell;
-  return cell > 0 ? `${cell}<i class="material-icons">arrow_drop_up</i>`  : `${cell}<i class="material-icons">arrow_drop_down</i>`;
+  return cell > 0 ? `+${cell}<i class="material-icons vertical-align-middle padding-bottom-3">arrow_drop_up</i>`  : `${cell}<i class="material-icons vertical-align-middle padding-bottom-3 ">arrow_drop_down</i>`;
 }
 
- 
 
 class SortTable extends Component {
   render() {
@@ -25,10 +22,9 @@ class SortTable extends Component {
       <div>
         <BootstrapTable ref='table' data={ data } headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>
             <TableHeaderColumn width='20%' dataField='symbol' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>
-            {/* <TableHeaderColumn width='15%' dataField='exchange' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Exchange</TableHeaderColumn> */}
             {/* <TableHeaderColumn dataField='companyName' columnClassName='td-column'  dataSort={ true } filter={ { type: 'TextFilter', delay: 500 } }>Company Name</TableHeaderColumn> */}
             <TableHeaderColumn width='40%' dataField='companyName'  dataSort={ true }  columnClassName= 'bstable'>Company Name</TableHeaderColumn>
-            <TableHeaderColumn width='20%' dataField='latestPrice' dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Price</TableHeaderColumn>
+            <TableHeaderColumn width='20%' dataField='latestPrice' dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Price</TableHeaderColumn>            
             <TableHeaderColumn width='20%' dataField='change' columnClassName={ columnClassNameFormat }  dataSort={ true } dataFormat={ priceFormatter }>Change</TableHeaderColumn>
         </BootstrapTable>
       </div>
