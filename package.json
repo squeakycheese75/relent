@@ -8,7 +8,6 @@
     "dotenv": "^6.2.0",
     "google-map-react": "^1.1.2",
     "react": "^16.8.4",
-    "react-appinsights": "^2.0.2",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-bootstrap-table": "^4.3.1",
     "react-dom": "^16.8.4",
