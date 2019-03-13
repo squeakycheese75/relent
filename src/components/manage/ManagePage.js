@@ -30,7 +30,6 @@ class ManagePage extends React.Component{
 
         if (this.props.filteredTickersData && this.props.filteredTickersData.length) {
              activeComponent =  <TickerSearchResultsTable   onSubmit={this.addTicker} data={this.props.filteredTickersData}/>
-                //  <TickerSearchResults   onSubmit={this.addTicker} data={this.props.filteredTickersData}/>
         }
             
         return(
@@ -38,7 +37,6 @@ class ManagePage extends React.Component{
                 <br/>
                 <h4>Subscribed tickers:</h4>   
                 <TickerSubscribedResults data={this.props.data} onSubmit={this.removeTicker}/>
-                {/* <SubscribeList data={this.props.data} onSubmit={this.removeTicker}/> */}
                 <br/>
                 <h4>Find new tickers:</h4>
                 <TickerSearch exchanges={exchanges} filterExchanges={this.filteredTickers}/>
