@@ -39,3 +39,7 @@
 .padding-bottom-3 {
     padding-bottom: 3px;
 }
+
+.material-icons {
+    margin-left: -5px;
+}

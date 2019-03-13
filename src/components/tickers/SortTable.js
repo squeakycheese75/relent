@@ -10,7 +10,7 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
 
 
 function priceFormatter(cell) {
-  return cell > 0 ? `+${cell}<i class="material-icons vertical-align-middle padding-bottom-3">arrow_drop_up</i>`  : `${cell}<i class="material-icons vertical-align-middle padding-bottom-3 ">arrow_drop_down</i>`;
+  return cell > 0 ? `+${cell}<i class="material-icons vertical-align-middle">arrow_drop_up</i>`  : `${cell}<i class="material-icons vertical-align-middle">arrow_drop_down</i>`;
 }
 
 
