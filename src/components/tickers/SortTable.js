@@ -20,7 +20,7 @@ class SortTable extends Component {
     const { data } = this.props;
     return (
       <div>
-        <BootstrapTable ref='table' data={ data } headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>
+        <BootstrapTable ref='table' data={ data }  headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>
             <TableHeaderColumn width='20%' dataField='symbol' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>
             {/* <TableHeaderColumn dataField='companyName' columnClassName='td-column'  dataSort={ true } filter={ { type: 'TextFilter', delay: 500 } }>Company Name</TableHeaderColumn> */}
             <TableHeaderColumn width='40%' dataField='companyName'  dataSort={ true }  columnClassName= 'bstable'>Company Name</TableHeaderColumn>
