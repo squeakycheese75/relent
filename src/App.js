@@ -6,7 +6,6 @@ import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
 import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
-//import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 
 require('dotenv').config()
@@ -30,14 +29,16 @@ class App extends Component {
         },
         tickers: [],
         exchanges: [],
+        sectors: [],
         filteredTickers: []
     }
 
     //Load component data
     fetchTickers = () => {
-        var url = "https://relentapi.azurewebsites.net/tickers/";
-        //console.log('url', url)
-        //fetch('http://127.0.0.1:5000/tickers/')
+        var url = process.env['REACT_APP_PRICES_API'] + "tickers/";
+        // console.log("fetchTickers:", url)
+        // //var url = "https://relentapi.azurewebsites.net/tickers/";
+        // url = "http://127.0.0.1:5000/tickers/";
         fetch(url)
         .then(res => res.json())
         .then(allTickers => {
@@ -47,23 +48,33 @@ class App extends Component {
             //Might not setstate here
         })//.then(console.log('done'))
         //.then(res => console.log(this.state.tickers))
-        .then(res => this.determineUniqueExhanges())
+        .then(res => this.determineUniqueSectors())
     }
 
-    determineUniqueExhanges = () => {
+    // determineUniqueExhanges = () => {
+    //     //console.log(this.state.tickers);
+    //     const exchanges = this.state.tickers 
+    //     ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
+    //     : [];
+    //     exchanges.unshift(null);
+    //     this.setState({exchanges: exchanges})
+    // }
+
+    determineUniqueSectors= () => {
         //console.log(this.state.tickers);
-        const exchanges = this.state.tickers 
-        ? Array.from(new Set(this.state.tickers.map(t => t.exchange)))
+        const sectors = this.state.tickers 
+        ? Array.from(new Set(this.state.tickers.map(t => t.sector)))
         : [];
-        exchanges.unshift(null);
-        this.setState({exchanges: exchanges})
+        sectors.unshift(null);
+        this.setState({sectors: sectors})
     }
 
     filteredTickers = (input) => {
-        const filteredTickers = this.state.tickers.filter((h) => h.exchange === input);
-        const filterSUbscribedTickers = filteredTickers.filter(id => !this.state.subscribedTickers.includes(id.symbol));
+        const filteredTickers = this.state.tickers.filter((h) => h.sector === input);
+        //const filterSUbscribedTickers = filteredTickers.filter(ticker => !this.state.subscribedTickers.includes(ticker));
+        const filterSUbscribedTickers = filteredTickers.filter(id => !this.state.subscribedTickers.includes(id.ticker));
         this.setState({filteredTickers: filterSUbscribedTickers});
-        this.setState({selectedExchange: input});
+        this.setState({selectedSector: input});
     }
 
     componentWillMount(){
@@ -91,8 +102,10 @@ class App extends Component {
     }
 
     async fetchDataWithTicker(){   
-        var url = "https://relentapi.azurewebsites.net/prices/" + this.state.subscribedTickers.join(",");
+        //var url = "https://relentapi.azurewebsites.net/prices/" + this.state.subscribedTickers.join(",");
         //var url = "http://127.0.0.1:5000/prices/" + this.state.subscribedTickers.join(",");
+        var url = process.env['REACT_APP_PRICES_API'] + "pricing/" + this.state.subscribedTickers.join(",");
+        //var url = "http://127.0.0.1:5000/prices/"+ this.state.subscribedTickers.join(",");
         fetch(url)       
         .then(res => res.json())
         .then(
@@ -115,7 +128,7 @@ class App extends Component {
         }
 
     addNewTicker = (input) => {
-        //console.log('In App.addNewTicker with ', input)
+        console.log('App.addNewTicker', input);
         if(input){
             //Check it's not already in the list
             var resval = this.state.subscribedTickers.some(item => input === item);
@@ -124,7 +137,8 @@ class App extends Component {
                     {
                         //Reload data in callback.
                         this.loadData();
-                        this.filteredTickers(this.state.selectedExchange);
+                        console.log('calling this.filteredTickers with ', this.state.selectedSector)
+                        this.filteredTickers(this.state.selectedSector);
                     });                
             }
         }
@@ -153,7 +167,7 @@ class App extends Component {
                             data={this.state.subscribedTickers} 
                             addNewTicker={this.addNewTicker} 
                             removeTicker={this.removeTicker} 
-                            exchanges={this.state.exchanges} 
+                            sectors={this.state.sectors} 
                             filteredTickers={this.filteredTickers}
                             filteredTickersData={this.state.filteredTickers}/>)}  />
                     <Route exact path="/login" component={LoginPage} />

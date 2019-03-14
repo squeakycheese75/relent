@@ -6,6 +6,7 @@ import  './TickerSearchResultsTable.css';
 
 class TickerSubscribedResults extends Component {
     removeItem = (index) => {
+
         this.props.onSubmit(index)
     };
     cellButton(cell) {
@@ -26,7 +27,7 @@ class TickerSubscribedResults extends Component {
       
       var jList = [];
       for(var i in data){
-        jList.push({ "symbol" : data[i]});
+        jList.push({ "ticker" : data[i]});
         }
         
       return (
@@ -34,8 +35,8 @@ class TickerSubscribedResults extends Component {
         <div className="searchtable">
         
           <BootstrapTable ref='table' data={ jList } headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover search size="sm" version='4' options={ { noDataText: 'Loading...' } }>
-              <TableHeaderColumn width='20%' dataField='symbol' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>              
-              <TableHeaderColumn width='20%' dataField='symbol' dataFormat={this.cellButton.bind(this)}>Remove</TableHeaderColumn>                           
+              <TableHeaderColumn width='20%' dataField='ticker' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>              
+              <TableHeaderColumn width='20%' dataField='ticker' dataFormat={this.cellButton.bind(this)}>Remove</TableHeaderColumn>                           
           </BootstrapTable>
         </div>
       );
