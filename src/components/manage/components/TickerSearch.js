@@ -14,7 +14,7 @@ class TickerSearch extends Component{
 
 
     render(){
-        const exchanges = this.props.exchanges || [];
+        const sectors = this.props.sectors || [];
         return(
             <div className="container-fluid">      
                 <Form inline onSubmit={this.handleSubmit}>
@@ -27,7 +27,7 @@ class TickerSearch extends Component{
                     onSelect = {(event => this.onTargetSelect(event))}
                     id={this.state.selectedValue}
                     >
-                    {exchanges.map((exc) =><Dropdown.Item eventKey={exc} key={exc}>{exc}</Dropdown.Item>)}
+                    {sectors.map((sector) =><Dropdown.Item eventKey={sector} key={sector}>{sector}</Dropdown.Item>)}
                     </DropdownButton>
                 </FormGroup>
                 </Form>
