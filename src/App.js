@@ -6,7 +6,6 @@ import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
 import LoginPage from './components/login/LoginPage';
 import TickerPage from './components/tickers/TickerPage';
-//import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 
 require('dotenv').config()
@@ -35,9 +34,10 @@ class App extends Component {
 
     //Load component data
     fetchTickers = () => {
-        var url = "https://relentapi.azurewebsites.net/tickers/";
-        //console.log('url', url)
-        //fetch('http://127.0.0.1:5000/tickers/')
+        var url = process.env['REACT_APP_PRICES_API'] + "tickers/";
+        // console.log("fetchTickers:", url)
+        // //var url = "https://relentapi.azurewebsites.net/tickers/";
+        // url = "http://127.0.0.1:5000/tickers/";
         fetch(url)
         .then(res => res.json())
         .then(allTickers => {
@@ -91,8 +91,10 @@ class App extends Component {
     }
 
     async fetchDataWithTicker(){   
-        var url = "https://relentapi.azurewebsites.net/prices/" + this.state.subscribedTickers.join(",");
+        //var url = "https://relentapi.azurewebsites.net/prices/" + this.state.subscribedTickers.join(",");
         //var url = "http://127.0.0.1:5000/prices/" + this.state.subscribedTickers.join(",");
+        var url = process.env['REACT_APP_PRICES_API'] + "prices/" + this.state.subscribedTickers.join(",");
+        //var url = "http://127.0.0.1:5000/prices/"+ this.state.subscribedTickers.join(",");
         fetch(url)       
         .then(res => res.json())
         .then(
@@ -115,7 +117,7 @@ class App extends Component {
         }
 
     addNewTicker = (input) => {
-        //console.log('In App.addNewTicker with ', input)
+        
         if(input){
             //Check it's not already in the list
             var resval = this.state.subscribedTickers.some(item => input === item);
