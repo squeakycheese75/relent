@@ -25,9 +25,18 @@ function priceChangeFormatter(cell, row) {
     (parseFloat(row.change) / (parseFloat(row.last) + parseFloat(row.change))) *
     100
   ).toFixed(2);
-  return cell > 0
-    ? `+${cell}<i class="material-icons vertical-align-middle">arrow_drop_up</i> (${movement}%)`
-    : `${cell}<i class="material-icons vertical-align-middle">arrow_drop_down</i> (${movement}%)`;
+
+  // return cell > 0
+  //   ? `+${cell}<i class="material-icons vertical-align-middle">arrow_drop_up</i> (${movement}%)`
+  //   : `${cell}<i class="material-icons vertical-align-middle">arrow_drop_down</i> (${movement}%)`;
+  return (
+    <div>
+      <ul>
+        <li className="name">{cell}</li>
+        <li className="role">({movement}%)</li>
+      </ul>
+    </div>
+  );
 }
 
 function nameFormatter(cell, row) {
@@ -103,7 +112,7 @@ class SortTable extends Component {
             Open
           </TableHeaderColumn>
           <TableHeaderColumn
-            width="20%"
+            width="17%"
             dataField="change"
             columnClassName={columnClassNameFormat}
             dataSort={true}
@@ -112,7 +121,7 @@ class SortTable extends Component {
             Change
           </TableHeaderColumn>
           <TableHeaderColumn
-            width="4%"
+            width="7%"
             dataField="_id"
             dataFormat={this.removeButton.bind(this)}
           />
