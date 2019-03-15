@@ -1,93 +1,95 @@
-.td-column-size{
-    font-size: small;
-    font-weight: bold;
-   }
-
-.td-column-price-down {
-    /* animation: blinker 1s linear infinite; */
-    color:#ff2e00;
-  }
-  
-  @keyframes blinker { 
-    50% { opacity: 0; }
-  }
-
-.td-column-price-up{
-    color:#4C9900;
+.td-column-size {
+  font-size: small;
+  font-weight: bold;
 }
 
-.bstable-header-bold{
-    font-weight: bold;
+.td-column-price-down {
+  /* animation: blinker 1s linear infinite; */
+  color: #ff2e00;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.td-column-price-up {
+  color: #4c9900;
+}
+
+.bstable-header-bold {
+  font-weight: bold;
 }
 
 .twenty {
-    width: 20%
+  width: 20%;
 }
 
 .forty {
-    width: 40%
+  width: 40%;
 }
 
-.bstable{
-    font-size: small;
+.bstable {
+  font-size: small;
 }
 
-.vertical-align-middle { 
-    vertical-align: middle; 
+.vertical-align-middle {
+  vertical-align: middle;
 }
 
 .padding-bottom-3 {
-    padding-bottom: 3px;
+  padding-bottom: 3px;
 }
 
 .material-icons {
-    margin-left: -5px;
+  margin-left: -5px;
 }
 
-.material-icons.orange600 { color:#FB8C00; }
-
-ul{
-    padding-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+.material-icons.orange600 {
+  color: #fb8c00;
 }
 
-li{
-    list-style: none;
-    padding-top: 0px;
-    padding-bottom: 0px;
+ul {
+  padding-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
-.name{
-    /* background: #AAAAFA; */
-    height: 15px;
-    width: 150px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-top: 5px;
-    /* padding: .25em; */
+li {
+  list-style: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
-.role{
-    /* background: #AAAAFA; */
-    height: 15px;
-    width: 150px;
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* padding: .25em; */
+.name {
+  /* background: #AAAAFA; */
+  height: 15px;
+  /* width: 150px; */
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 5px;
+  /* padding: .25em; */
 }
 
-.table td.symbol{
-    padding: .25em;
-    margin-left: 10px;
+.role {
+  /* background: #AAAAFA; */
+  height: 15px;
+  /* width: 150px; */
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  /* padding: .25em; */
 }
 
-
-.table th.symbol{
-    padding: .25em;
-    margin-left: 10px;
+.table td.symbol {
+  padding: 0.25em;
+  margin-left: 10px;
 }
 
+.table th.symbol {
+  padding: 0.25em;
+  margin-left: 10px;
+}
