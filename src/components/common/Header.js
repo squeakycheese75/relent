@@ -8,11 +8,11 @@ const Header =() => {
     return (
         <div className={styles}>
         <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark">
-            <LinkContainer to="tickers"><Navbar.Brand>Relent</Navbar.Brand></LinkContainer>
+            <LinkContainer to="pricing"><Navbar.Brand>Relent</Navbar.Brand></LinkContainer>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="navbar-nav mr-auto">
-                    <LinkContainer to="tickers"><Button className="btn outline">Prices</Button></LinkContainer>
+                    <LinkContainer to="pricing"><Button className="btn outline">Prices</Button></LinkContainer>
                     <LinkContainer to="manage"><Button>Manage</Button></LinkContainer>
                     <LinkContainer to="about"><Button>About</Button></LinkContainer>
                 </Nav>
