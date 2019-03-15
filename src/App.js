@@ -5,7 +5,7 @@ import AboutPage from './components/about/AboutPage';
 import HomePage  from './components/home/HomePage';
 import ManagePage from './components/manage/ManagePage';
 import LoginPage from './components/login/LoginPage';
-import TickerPage from './components/tickers/TickerPage';
+import PricingPage from './components/tickers/PricingPage';
 
 
 require('dotenv').config()
@@ -166,12 +166,12 @@ class App extends Component {
                         (<ManagePage 
                             data={this.state.subscribedTickers} 
                             addNewTicker={this.addNewTicker} 
-                            removeTicker={this.removeTicker} 
+                            // removeTicker={this.removeTicker} 
                             sectors={this.state.sectors} 
                             filteredTickers={this.filteredTickers}
                             filteredTickersData={this.state.filteredTickers}/>)}  />
                     <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/tickers" render={() => (<TickerPage data={this.state.data}/>)} />   
+                    <Route exact path="/pricing" render={() => (<PricingPage data={this.state.data} removeTicker={this.removeTicker} />)} />   
                     { /* Finally, catch all unmatched routes */ }
                     {/* <Route exact component={NotFound} /> */}
                 </div>

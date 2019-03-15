@@ -43,3 +43,5 @@
 .material-icons {
     margin-left: -5px;
 }
+
+.material-icons.orange600 { color:#FB8C00; }

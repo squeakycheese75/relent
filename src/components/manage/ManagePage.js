@@ -1,22 +1,13 @@
 import React from 'react';
-//import SubscribeList from './SubscribeList';
 import TickerSearch from './components/TickerSearch';
 import PreferencesForm from './components/PreferencesForm';
-//import TickerSearchResults from './components/TickerSearchResults';
 import TickerSearchResultsTable from './components/TickerSearchResultsTable';
-import TickerSubscribedResults from './components/TickerSubscribedResults';
 
 class ManagePage extends React.Component{
 
     addTicker = (event) => {
         //console.log("In ManagePage.addNewTicker with ", event);
         this.props.addNewTicker(event)
-    }
-
-
-    removeTicker = (event) => {
-        //console.log("In ManagePage.removeTicker with ", event);
-        this.props.removeTicker(event)
     }
 
     filteredTickers = (event) => {
@@ -35,9 +26,9 @@ class ManagePage extends React.Component{
         return(
             <div>
                 <br/>
-                <h4>Subscribed tickers:</h4>   
+                {/* <h4>Subscribed tickers:</h4>   
                 <TickerSubscribedResults data={this.props.data} onSubmit={this.removeTicker}/>
-                <br/>
+                <br/> */}
                 <h4>Find new tickers:</h4>
                 <TickerSearch sectors={sectors} filterExchanges={this.filteredTickers}/>
                 {activeComponent} 

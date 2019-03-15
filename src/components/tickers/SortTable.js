@@ -1,9 +1,8 @@
 
 import React, {Component} from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+//import {Button} from 'react-bootstrap';
 import  './SortTable.css';
-
-//const FIXED_DP = '2'
 
 
 function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
@@ -26,20 +25,30 @@ function priceChangeFormatter(cell, row) {
   return cell > 0 ? `+${cell}<i class="material-icons vertical-align-middle">arrow_drop_up</i> (${movement}%)`  : `${cell}<i class="material-icons vertical-align-middle">arrow_drop_down</i> (${movement}%)`;
 }
 
-//dataFormat={ priceFormatter }
 class SortTable extends Component {
+  removeItem = (index) => {
+    this.props.onSubmit(index)
+  };
+
+  removeButton(cell) {
+      return (
+          //<Button variant="danger" size="sm" className="mdc-icon-button material-icons md-12" onClick={() => this.removeItem(cell)}>highlight_off</Button>
+          <i className="mdc-icon-button material-icons md-12 orange600" onClick={() => this.removeItem(cell)}>highlight_off</i>
+      )};
+
   render() {
    
     const { data } = this.props;
     return (
       <div>
-        <BootstrapTable ref='table' data={ data }  headerContainerClass='bstable bstable-header-bold' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>
+        <BootstrapTable ref='table' data={ data }  headerContainerClass='bstable' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>  
             <TableHeaderColumn width='10%' dataField='_id' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>    
-            <TableHeaderColumn width='30%' dataField='name'  dataSort={ true }  columnClassName= 'bstable'>Company Name</TableHeaderColumn>
+            <TableHeaderColumn width='30%' dataField='name'  dataSort={ true }  columnClassName= 'bstable'>Name</TableHeaderColumn>
             {/* <TableHeaderColumn width='10%' dataField='sector'  dataSort={ true }  columnClassName= 'bstable'>Sector</TableHeaderColumn> */}
-            <TableHeaderColumn width='20%' dataField='last' dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Price</TableHeaderColumn>            
-            <TableHeaderColumn width='20%' dataField='open' dataFormat={ openFormatter } dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Open</TableHeaderColumn>            
-            <TableHeaderColumn width='20%' dataField='change' columnClassName={ columnClassNameFormat }  dataSort={ true } dataFormat={ priceChangeFormatter }>Change</TableHeaderColumn>
+            <TableHeaderColumn width='16%' dataField='last' dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Price</TableHeaderColumn>            
+            <TableHeaderColumn width='16%' dataField='open' dataFormat={ openFormatter } dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Open</TableHeaderColumn>            
+            <TableHeaderColumn width='25%' dataField='change' columnClassName={ columnClassNameFormat }  dataSort={ true } dataFormat={ priceChangeFormatter }>Change</TableHeaderColumn>            
+            <TableHeaderColumn width='4%' dataField='_id' dataFormat={this.removeButton.bind(this)}></TableHeaderColumn>  
         </BootstrapTable>
       </div>
     );
