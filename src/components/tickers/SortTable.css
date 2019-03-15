@@ -66,6 +66,7 @@ li{
     font-weight: bold;
     margin-left: 10px;
     margin-top: 5px;
+    /* padding: .25em; */
 }
 
 .role{
@@ -76,16 +77,17 @@ li{
     margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
+    /* padding: .25em; */
 }
 
-.table td{
+.table td.symbol{
     padding: .25em;
     margin-left: 10px;
 }
 
 
-.table th{
-    /* padding: .25em; */
+.table th.symbol{
+    padding: .25em;
     margin-left: 10px;
 }
 

@@ -51,8 +51,7 @@ class SortTable extends Component {
     const { data } = this.props;
     return (
       <div>
-        <BootstrapTable ref='table' data={ data }  headerContainerClass='bstable' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }>  
-            {/* <TableHeaderColumn width='10%' dataField='_id' isKey={ true } dataSort={ true } columnClassName= 'bstable'>Symbol</TableHeaderColumn>     */}
+        <BootstrapTable ref='table' data={ data }  headerContainerClass='bstable' responsive striped bordered hover size="sm" version='4' options={ { noDataText: 'Loading...' } }> 
             <TableHeaderColumn width='30%' dataField='_id'  isKey={ true } dataSort={ true }  columnClassName= 'bstable'  dataFormat={ nameFormatter }>Name</TableHeaderColumn>
             {/* <TableHeaderColumn width='10%' dataField='sector'  dataSort={ true }  columnClassName= 'bstable'>Sector</TableHeaderColumn> */}
             <TableHeaderColumn width='16%' dataField='last' dataSort={ true } columnClassName= 'bstable bstable-header-bold' >Price</TableHeaderColumn>            
