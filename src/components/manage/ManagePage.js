@@ -26,9 +26,6 @@ class ManagePage extends React.Component{
         return(
             <div>
                 <br/>
-                {/* <h4>Subscribed tickers:</h4>   
-                <TickerSubscribedResults data={this.props.data} onSubmit={this.removeTicker}/>
-                <br/> */}
                 <h4>Find new tickers:</h4>
                 <TickerSearch sectors={sectors} filterExchanges={this.filteredTickers}/>
                 {activeComponent} 

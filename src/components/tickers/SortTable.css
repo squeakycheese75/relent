@@ -45,3 +45,47 @@
 }
 
 .material-icons.orange600 { color:#FB8C00; }
+
+ul{
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+li{
+    list-style: none;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.name{
+    /* background: #AAAAFA; */
+    height: 15px;
+    width: 150px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.role{
+    /* background: #AAAAFA; */
+    height: 15px;
+    width: 150px;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.table td{
+    padding: .25em;
+    margin-left: 10px;
+}
+
+
+.table th{
+    /* padding: .25em; */
+    margin-left: 10px;
+}
+
