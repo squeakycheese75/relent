@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import Header from "./components/common/Header";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+//import Header from "./components/common/Header";
+import HeaderNew from "./components/common/HeaderNew";
 import AboutPage from "./components/about/AboutPage";
 import HomePage from "./components/home/HomePage";
 import ManagePage from "./components/manage/ManagePage";
@@ -156,39 +157,39 @@ class App extends Component {
     }
 
     return (
-      <Switch>
+      <BrowserRouter>
         <div>
-          <Header />
-
-          <Route exact path="/" component={HomePage} />
-          <Route path="/about" component={AboutPage} />
-          <Route
-            path="/manage"
-            render={() => (
-              <ManagePage
-                data={this.state.subscribedTickers}
-                addNewTicker={this.addNewTicker}
-                sectors={this.state.sectors}
-                filteredTickers={this.filteredTickers}
-                filteredTickersData={this.state.filteredTickers}
-              />
-            )}
-          />
-          <Route exact path="/login" component={LoginPage} />
-          <Route
-            exact
-            path="/pricing"
-            render={() => (
-              <PricingPage
-                data={this.state.data}
-                removeTicker={this.removeTicker}
-              />
-            )}
-          />
-          {/* Finally, catch all unmatched routes */}
-          {/* <Route exact component={NotFound} /> */}
+          {/* <Header /> */}
+          <HeaderNew />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/about" component={AboutPage} />
+            <Route
+              path="/manage"
+              render={() => (
+                <ManagePage
+                  data={this.state.subscribedTickers}
+                  addNewTicker={this.addNewTicker}
+                  sectors={this.state.sectors}
+                  filteredTickers={this.filteredTickers}
+                  filteredTickersData={this.state.filteredTickers}
+                />
+              )}
+            />
+            <Route exact path="/login" component={LoginPage} />
+            <Route
+              exact
+              path="/pricing"
+              render={() => (
+                <PricingPage
+                  data={this.state.data}
+                  removeTicker={this.removeTicker}
+                />
+              )}
+            />
+          </Switch>
         </div>
-      </Switch>
+      </BrowserRouter>
     );
   }
 }
