@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 //import Header from "./components/common/Header";
 import HeaderNew from "./components/common/HeaderNew";
 import AboutPage from "./components/about/AboutPage";
 import HomePage from "./components/home/HomePage";
 import ManagePage from "./components/manage/ManagePage";
-import LoginPage from "./components/login/LoginPage";
 import PricingPage from "./components/tickers/PricingPage";
+import Auth from "./components/auth/Auth";
+import Callback from "./Callback";
 
-require("dotenv").config();
+//require("dotenv").config();
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+  }
   state = {
     hasError: false,
-    isLoaded: false,
-    isAuthenticated: true,
     subscribedTickers: ["AAPL", "ADM.L"],
     data: [],
     user: {
@@ -157,10 +160,10 @@ class App extends Component {
     }
 
     return (
-      <BrowserRouter>
+      <>
         <div>
           {/* <Header /> */}
-          <HeaderNew />
+          <HeaderNew auth={this.auth} />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/about" component={AboutPage} />
@@ -176,7 +179,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/login" component={LoginPage} />
+            {/* <Route exact path="/login" component={LoginPage} /> */}
             <Route
               exact
               path="/pricing"
@@ -187,9 +190,13 @@ class App extends Component {
                 />
               )}
             />
+            <Route
+              path="/callback"
+              render={props => <Callback auth={this.auth} {...props} />}
+            />
           </Switch>
         </div>
-      </BrowserRouter>
+      </>
     );
   }
 }
