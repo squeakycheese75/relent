@@ -50,6 +50,7 @@
 
 .material-icons.orange600 {
   color: #fb8c00;
+  text-align: center;
 }
 
 ul {
@@ -65,33 +66,38 @@ li {
 }
 
 .name {
-  /* background: #AAAAFA; */
   height: 10px;
-  /* width: 150px; */
   font-size: 12px;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 0px;
   margin-top: 5px;
-  /* padding: .25em; */
 }
 
-.role {
-  /* background: #AAAAFA; */
+.details {
   height: 10px;
-  /* width: 150px; */
-  font-size: 10px;
-  margin-left: 10px;
+  font-size: 11px;
+  margin-left: 0px;
   margin-top: 5px;
   margin-bottom: 5px;
-  /* padding: .25em; */
+}
+
+.table {
+  margin-bottom: 0.25em;
 }
 
 .table td {
   padding: 0.2em;
   margin-left: 10px;
+  vertical-align: middle;
+  border: 0px;
 }
 
 .table th {
-  padding: 0.2em;
   margin-left: 10px;
+  padding: 0.2em;
+  border: 0px;
+}
+
+td.bstable-icon {
+  text-align: right;
 }
