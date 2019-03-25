@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 //import {Button} from 'react-bootstrap';
 import "./SortTable.css";
+//import styles from "./sortTable-styles.js";
 
 function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
   return fieldValue < 0
@@ -33,7 +34,7 @@ function priceChangeFormatter(cell, row) {
     <div>
       <ul>
         <li className="name">{cell}</li>
-        <li className="role">({movement}%)</li>
+        <li className="details">({movement}%)</li>
       </ul>
     </div>
   );
@@ -44,7 +45,7 @@ function nameFormatter(cell, row) {
     <div>
       <ul>
         <li className="name">{cell}</li>
-        <li className="role">{row.name}</li>
+        <li className="details">{row.name}</li>
       </ul>
     </div>
   );
@@ -62,7 +63,8 @@ class SortTable extends Component {
         className="mdc-icon-button material-icons md-12 orange600"
         onClick={() => this.removeItem(cell)}
       >
-        highlight_off
+        {/* highlight_off */}
+        delete
       </i>
     );
   }
@@ -78,9 +80,11 @@ class SortTable extends Component {
           responsive
           striped
           bordered
-          hover
+          // hover
           size="sm"
           version="4"
+          //bordered={false}
+          // styles={styles.boostraptable}
           options={{ noDataText: "Loading..." }}
         >
           <TableHeaderColumn
@@ -88,7 +92,9 @@ class SortTable extends Component {
             dataField="_id"
             isKey={true}
             dataSort={true}
+            //bordered={true}
             columnClassName="bstable"
+            // styles={styles.tableColumnHeader}
             dataFormat={nameFormatter}
           >
             Name
@@ -123,6 +129,8 @@ class SortTable extends Component {
           <TableHeaderColumn
             width="7%"
             dataField="_id"
+            columnClassName="bstable bstable-icon"
+            dataAlign="center"
             dataFormat={this.removeButton.bind(this)}
           />
         </BootstrapTable>
