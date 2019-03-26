@@ -1,12 +1,13 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
 import LinkedInBadge from "./LinkedInBadge";
+import styles from "./AboutPage.css";
 
 const AboutPage = () => {
   return (
-    <div>
+    <div className={styles}>
       <Jumbotron>
-        <h4>About me:</h4>
+        <h1>About me:</h1>
         <p>
           I'm a freelance software engineer and digital nomad. Currently living
           and working from...<s>London</s>, <s>Berlin</s>, <s>Barcelona</s>,

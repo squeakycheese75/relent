@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 //import Header from "./components/common/Header";
 import HeaderNew from "./components/common/HeaderNew";
 import AboutPage from "./components/about/AboutPage";
@@ -7,7 +7,10 @@ import HomePage from "./components/home/HomePage";
 import ManagePage from "./components/manage/ManagePage";
 import PricingPage from "./components/tickers/PricingPage";
 import Auth from "./components/auth/Auth";
+//import NotFound from "./components/common/NotFound";
 import Callback from "./Callback";
+import Public from "./Public";
+import ProfilePage from "./components/profile/ProfilePage";
 
 //require("dotenv").config();
 
@@ -194,6 +197,19 @@ class App extends Component {
               path="/callback"
               render={props => <Callback auth={this.auth} {...props} />}
             />
+            <Route
+              path="/profile"
+              render={props =>
+                this.auth.isAuthenticated() ? (
+                  <ProfilePage auth={this.auth} {...props} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
+            <Route path="/public" component={Public} />
+            {/* Finally, catch all unmatched routes */}
+            {/* <Route component={NotFound} /> */}
           </Switch>
         </div>
       </>

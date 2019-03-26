@@ -3,6 +3,7 @@ import styles from "./Header.css";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from "react-bootstrap";
 //import { LinkContainer } from "react-router-bootstrap";
+//import styles from "./Header.css";
 
 class HeaderNew extends Component {
   render() {
@@ -24,27 +25,22 @@ class HeaderNew extends Component {
               <Link to="about">
                 <Button>About</Button>
               </Link>
-              {/* <LinkContainer to="/about">
-                <Nav.Item>About</Nav.Item>
-              </LinkContainer> */}
+              {/* <Link to="public">
+                <Button>Public</Button>
+              </Link> */}
             </Nav>
             <Nav pullright="true">
-              {/* <Nav.Item >
-                          <Nav.Link>v0.1.2 beta</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
-                      <Navbar.Brand href="https://github.com/squeakycheese75/relent">
-                          <img
-                              src="./images/github.png"
-                              width="30"
-                              height="30"
-                              className="d-inline-block align-top"
-                              alt="GitHub"
-                          />
-                          </Navbar.Brand>
-                      </Nav.Item> */}
+              {isAuthenticated() && (
+                <Link to="profile">
+                  <Button>Profile</Button>
+                </Link>
+              )}
               <Link to="login">
-                <Button onClick={isAuthenticated() ? logout : login}>
+                <Button
+                  className={styles}
+                  variant="outline-light"
+                  onClick={isAuthenticated() ? logout : login}
+                >
                   {isAuthenticated() ? "Log Out" : "Log In"}
                 </Button>
               </Link>
