@@ -32,8 +32,8 @@
 
 .bstable {
   font-size: small;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+  /* padding-left: 0.25em;
+  padding-right: 0.25em; */
 }
 
 .vertical-align-middle {

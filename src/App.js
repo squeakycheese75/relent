@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Nav from "./components/common/HeaderNew";
+import Nav from "./components/common/Header";
 import AboutPage from "./components/about/AboutPage";
 import ManagePage from "./components/manage/ManagePage";
 import PricingPage from "./components/tickers/PricingPage";
@@ -23,8 +23,6 @@ class App extends Component {
     subscribedTickers: ["AAPL", "ADM.L"],
     data: [],
     user: {
-      sessionId: "ede7d095-428c-478d-9754-4cebbb08a855",
-      username: "SqueakyCheese",
       settings: {
         refresh: "30"
       }
