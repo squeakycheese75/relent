@@ -9,8 +9,9 @@ class Callback extends Component {
       throw new Error("Invalid callback URL.");
     }
   };
+
   render() {
-    return <h1>Loading...</h1>;
+    return <h1>Loading</h1>;
   }
 }
 

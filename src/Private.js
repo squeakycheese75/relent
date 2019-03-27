@@ -6,7 +6,7 @@ class Private extends Component {
   };
 
   componentDidMount() {
-    fetch("/api/private", {
+    fetch("/api/private/profile", {
       headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
     })
       .then(response => {
@@ -27,7 +27,11 @@ class Private extends Component {
   }
 
   render() {
-    return <p>{this.state.message}</p>;
+    return (
+      <>
+        <p>Whatever</p>
+      </>
+    );
   }
 }
 

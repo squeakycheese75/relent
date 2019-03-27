@@ -12,7 +12,7 @@ class HeaderNew extends Component {
     return (
       <div className={styles}>
         <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark">
-          <Navbar.Brand>Relent</Navbar.Brand>
+          <Navbar.Brand>S T O C K K L Y</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="navbar-nav mr-auto">
@@ -25,13 +25,13 @@ class HeaderNew extends Component {
               <Link to="about">
                 <Button>About</Button>
               </Link>
-              <Link to="public">
+              {/* <Link to="public">
                 <Button>Public</Button>
-              </Link>
-              {isAuthenticated() && (
+              </Link> */}
+              {/* {isAuthenticated() && (
                 <Link to="private">
                   <Button>Private</Button>
-                </Link>
+                </Link> */}
               )}
             </Nav>
             <Nav pullright="true">

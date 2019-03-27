@@ -1,35 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="Description" content="A lightweight, mobile-first app for watching Stocks (NASDAQ & FTSE), Funds, Crypto, FX and derived prices. 
-    stocker watcher, share watcher, tickers, prices, exchange, portfolio management">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="Description"
+      content="A lightweight, mobile-first app for watching Stocks (NASDAQ & FTSE), Funds, Crypto, FX and derived prices. 
+    stocker watcher, share watcher, tickers, prices, exchange, portfolio management"
+    />
 
-    <!-- Latest compiled and minified CSS -->   
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/> -->
-    <link rel="stylesheet" = href="css/bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <title>Relent</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <title>Relent</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+    <script
+      type="text/javascript"
+      src="https://platform.linkedin.com/badges/js/profile.js"
+    ></script>
     <!-- <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script> -->
-    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
-   
-   <script type="text/javascript" async defer>
-      var appInsights=window.appInsights||function(a){
-          function b(a){c[a]=function(){var b=arguments;c.queue.push(function(){c[a].apply(c,b)})}}var c={config:a},d=document,e=window;setTimeout(function(){var b=d.createElement("script");b.src=a.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js",d.getElementsByTagName("script")[0].parentNode.appendChild(b)});try{c.cookie=d.cookie}catch(a){}c.queue=[];for(var f=["Event","Exception","Metric","PageView","Trace","Dependency"];f.length;)b("track"+f.pop());if(b("setAuthenticatedUserContext"),b("clearAuthenticatedUserContext"),b("startTrackEvent"),b("stopTrackEvent"),b("startTrackPage"),b("stopTrackPage"),b("flush"),!a.disableExceptionTracking){f="onerror",b("_"+f);var g=e[f];e[f]=function(a,b,d,e,h){var i=g&&g(a,b,d,e,h);return!0!==i&&c["_"+f](a,b,d,e,h),i}}return c
-      }({
+    <script
+      src="https://unpkg.com/react@16/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <script type="text/javascript" async defer>
+      var appInsights =
+        window.appInsights ||
+        (function(a) {
+          function b(a) {
+            c[a] = function() {
+              var b = arguments;
+              c.queue.push(function() {
+                c[a].apply(c, b);
+              });
+            };
+          }
+          var c = { config: a },
+            d = document,
+            e = window;
+          setTimeout(function() {
+            var b = d.createElement("script");
+            (b.src =
+              a.url || "https://az416426.vo.msecnd.net/scripts/a/ai.0.js"),
+              d.getElementsByTagName("script")[0].parentNode.appendChild(b);
+          });
+          try {
+            c.cookie = d.cookie;
+          } catch (a) {}
+          c.queue = [];
+          for (
+            var f = [
+              "Event",
+              "Exception",
+              "Metric",
+              "PageView",
+              "Trace",
+              "Dependency"
+            ];
+            f.length;
+
+          )
+            b("track" + f.pop());
+          if (
+            (b("setAuthenticatedUserContext"),
+            b("clearAuthenticatedUserContext"),
+            b("startTrackEvent"),
+            b("stopTrackEvent"),
+            b("startTrackPage"),
+            b("stopTrackPage"),
+            b("flush"),
+            !a.disableExceptionTracking)
+          ) {
+            (f = "onerror"), b("_" + f);
+            var g = e[f];
+            e[f] = function(a, b, d, e, h) {
+              var i = g && g(a, b, d, e, h);
+              return !0 !== i && c["_" + f](a, b, d, e, h), i;
+            };
+          }
+          return c;
+        })({
           instrumentationKey: "83697374-7da7-47ed-95b4-ad9e75c4fe3e"
-      });
- 
-      window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&appInsights.trackPageView();
+        });
+
+      (window.appInsights = appInsights),
+        appInsights.queue &&
+          0 === appInsights.queue.length &&
+          appInsights.trackPageView();
     </script>
-        
   </body>
 </html>

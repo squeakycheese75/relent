@@ -22,7 +22,8 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.history.push("/");
+        window.location = "/";
+        //this.history.push("/");
       } else if (err) {
         this.history.push("/");
         alert(`Error: ${err.error}. Check the console for further details.`);
@@ -32,7 +33,6 @@ export default class Auth {
   };
 
   setSession = authResult => {
-    console.log(authResult);
     // set the time that the access token will expire
     const expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -57,6 +57,7 @@ export default class Auth {
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
       returnTo: "http://localhost:3000"
     });
+    //console.log("auth.logout finished");
   };
 
   getAccessToken = () => {
@@ -74,4 +75,20 @@ export default class Auth {
       cb(profile, err);
     });
   };
+
+  // renewToken(cb) {
+  //   this.auth0.checkSession({}, (err, result) => {
+  //     if (err) {
+  //       console.log(`Error: ${err.error} - ${err.error_description}.`);
+  //     } else {
+  //       this.setSession(result);
+  //     }
+  //     if (cb) cb(err, result);
+  //   });
+  // }
+
+  // scheduleTokenRenewal() {
+  //   const delay = _expiresAt - Date.now();
+  //   if (delay > 0) setTimeout(() => this.renewToken(), delay);
+  // }
 }

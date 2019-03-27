@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-//import Header from "./components/common/Header";
-import HeaderNew from "./components/common/HeaderNew";
+import Nav from "./components/common/HeaderNew";
 import AboutPage from "./components/about/AboutPage";
-import HomePage from "./components/home/HomePage";
 import ManagePage from "./components/manage/ManagePage";
 import PricingPage from "./components/tickers/PricingPage";
 import Auth from "./components/auth/Auth";
@@ -71,13 +69,46 @@ class App extends Component {
 
   componentWillMount() {
     this.fetchTickers();
-    this.loadData();
+    if (this.auth.isAuthenticated()) {
+      this.authenticatedLoad();
+    } else {
+      this.loadData();
+    }
   }
 
   componentDidMount() {
+    //console.log("Called componentDidMount");
+    if (this.auth.isAuthenticated()) {
+      this.authenticatedLoad();
+    } else {
+      //console.log("componentDidMount User not authenticated");
+      this.loadData();
+    }
     var refreshRate = this.state.user.settings.refresh * 1000;
     setInterval(() => this.loadData(), refreshRate);
-    this.loadData(); // also load one immediately
+    //this.loadData(); // also load one immediately
+  }
+
+  authenticatedLoad() {
+    fetch("/api/private/profile", {
+      headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
+    })
+      .then(response => {
+        if (response.ok) return response;
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          subscribedTickers: response.message
+        });
+      })
+      .then(response => this.loadData())
+      .catch(error => {
+        this.setState({
+          message: error.message
+        });
+      });
   }
 
   componentDidCatch(error, info) {
@@ -86,6 +117,7 @@ class App extends Component {
   }
 
   loadData() {
+    //console.log("In loading data!");
     if (
       Array.isArray(this.state.subscribedTickers) ||
       this.state.subscribedTickers.length
@@ -122,7 +154,7 @@ class App extends Component {
   }
 
   addNewTicker = input => {
-    console.log("App.addNewTicker", input);
+    //console.log("App.addNewTicker", input);
     if (input) {
       //Check it's not already in the list
       var resval = this.state.subscribedTickers.some(item => input === item);
@@ -143,6 +175,10 @@ class App extends Component {
         );
       }
     }
+
+    if (this.auth.isAuthenticated()) {
+      console.log("Push to backend");
+    }
   };
 
   removeTicker = index => {
@@ -156,6 +192,9 @@ class App extends Component {
         this.loadData();
       }
     );
+    if (this.auth.isAuthenticated()) {
+      console.log("Push to backend");
+    }
   };
 
   render() {
@@ -167,9 +206,9 @@ class App extends Component {
       <>
         <div>
           {/* <Header /> */}
-          <HeaderNew auth={this.auth} />
+          <Nav auth={this.auth} />
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            {/* <Route exact path="/" component={HomePage} /> */}
             <Route path="/about" component={AboutPage} />
             <Route
               path="/manage"
@@ -183,10 +222,9 @@ class App extends Component {
                 />
               )}
             />
-            {/* <Route exact path="/login" component={LoginPage} /> */}
             <Route
               exact
-              path="/pricing"
+              path={["/", "/pricing"]}
               render={() => (
                 <PricingPage
                   data={this.state.data}
@@ -196,7 +234,13 @@ class App extends Component {
             />
             <Route
               path="/callback"
-              render={props => <Callback auth={this.auth} {...props} />}
+              render={props => (
+                <Callback
+                  auth={this.auth}
+                  {...props}
+                  //loadProfileData={this.loadProfileData}
+                />
+              )}
             />
             <Route
               path="/profile"
