@@ -174,24 +174,44 @@ class App extends Component {
     }
 
     if (this.auth.isAuthenticated()) {
-      var data = { ticker: input };
-      fetch("api/private/tickers", {
-        method: "POST", // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-          Authorization: `Bearer ${this.auth.getAccessToken()}`,
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          if (response.ok) return response;
-          throw new Error("Network response was not ok.");
-        })
-        .then(res => res.json())
-        .then(response => console.log("Success:", JSON.stringify(response)))
-        .catch(error => console.error("Error:", error));
+      authorisedTickerCall("POST", index);
+      //   var data = { ticker: input };
+      //   fetch("api/private/tickers", {
+      //     method: "POST", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
     }
   };
+
+  authorisedTickerCall(method, ticker) {
+    var data = { ticker: ticker };
+    fetch("api/private/tickers", {
+      method: method,
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: {
+        Authorization: `Bearer ${this.auth.getAccessToken()}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) return response;
+        throw new Error("Network response was not ok.");
+      })
+      .then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error));
+  }
 
   removeTicker = index => {
     this.setState(
@@ -206,22 +226,23 @@ class App extends Component {
     );
 
     if (this.auth.isAuthenticated()) {
-      var data = { ticker: index };
-      fetch("api/private/tickers", {
-        method: "DELETE", // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-          Authorization: `Bearer ${this.auth.getAccessToken()}`,
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          if (response.ok) return response;
-          throw new Error("Network response was not ok.");
-        })
-        .then(res => res.json())
-        .then(response => console.log("Success:", JSON.stringify(response)))
-        .catch(error => console.error("Error:", error));
+      authorisedTickerCall("DELETE", index);
+      //   var data = { ticker: index };
+      //   fetch("api/private/tickers", {
+      //     method: "DELETE", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
     }
   };
 
