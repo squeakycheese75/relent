@@ -152,7 +152,6 @@ class App extends Component {
   }
 
   addNewTicker = input => {
-    //console.log("App.addNewTicker", input);
     if (input) {
       //Check it's not already in the list
       var resval = this.state.subscribedTickers.some(item => input === item);
@@ -175,7 +174,22 @@ class App extends Component {
     }
 
     if (this.auth.isAuthenticated()) {
-      console.log("Push to backend");
+      var data = { ticker: input };
+      fetch("api/private/tickers", {
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+          Authorization: `Bearer ${this.auth.getAccessToken()}`,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          if (response.ok) return response;
+          throw new Error("Network response was not ok.");
+        })
+        .then(res => res.json())
+        .then(response => console.log("Success:", JSON.stringify(response)))
+        .catch(error => console.error("Error:", error));
     }
   };
 
@@ -190,8 +204,24 @@ class App extends Component {
         this.loadData();
       }
     );
+
     if (this.auth.isAuthenticated()) {
-      console.log("Push to backend");
+      var data = { ticker: index };
+      fetch("api/private/tickers", {
+        method: "DELETE", // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+          Authorization: `Bearer ${this.auth.getAccessToken()}`,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          if (response.ok) return response;
+          throw new Error("Network response was not ok.");
+        })
+        .then(res => res.json())
+        .then(response => console.log("Success:", JSON.stringify(response)))
+        .catch(error => console.error("Error:", error));
     }
   };
 
@@ -203,10 +233,19 @@ class App extends Component {
     return (
       <>
         <div>
-          {/* <Header /> */}
           <Nav auth={this.auth} />
+
+          <Route
+            exact
+            path={["/", "/pricing"]}
+            render={() => (
+              <PricingPage
+                data={this.state.data}
+                removeTicker={this.removeTicker}
+              />
+            )}
+          />
           <Switch>
-            {/* <Route exact path="/" component={HomePage} /> */}
             <Route path="/about" component={AboutPage} />
             <Route
               path="/manage"
@@ -217,16 +256,6 @@ class App extends Component {
                   sectors={this.state.sectors}
                   filteredTickers={this.filteredTickers}
                   filteredTickersData={this.state.filteredTickers}
-                />
-              )}
-            />
-            <Route
-              exact
-              path={["/", "/pricing"]}
-              render={() => (
-                <PricingPage
-                  data={this.state.data}
-                  removeTicker={this.removeTicker}
                 />
               )}
             />
