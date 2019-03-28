@@ -3,6 +3,9 @@
   "version": "0.1.1",
   "private": true,
   "author": "squeakycheese",
+  "engines": {
+    "node": ">=10.1"
+  },
   "dependencies": {
     "auth0-js": "^9.8.0",
     "auth0-lock": "^11.10.0",
@@ -33,7 +36,6 @@
     "predeploy": "npm run build",
     "deploy": ""
   },
-  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
