@@ -6,7 +6,7 @@ class Public extends Component {
   };
 
   componentDidMount() {
-    var url = process.env["REACT_APP_PRICES_API"] + "api/public";
+    var url = process.env["REACT_APP_PRICES_API"] + "/api/public";
     console.log(url);
     fetch(url)
       .then(response => {
