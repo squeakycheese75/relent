@@ -6,7 +6,9 @@ class Private extends Component {
   };
 
   componentDidMount() {
-    fetch("/api/private/profile", {
+    var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
+    console.log(url);
+    fetch(url, {
       headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
     })
       .then(response => {
@@ -29,7 +31,7 @@ class Private extends Component {
   render() {
     return (
       <>
-        <p>Whatever</p>
+        <p>{this.state.message}</p>
       </>
     );
   }

@@ -36,6 +36,7 @@ class App extends Component {
   //Load component data
   fetchTickers = () => {
     var url = process.env["REACT_APP_PRICES_API"] + "tickers/";
+    console.log("fetchTickers fetching: ", url);
     fetch(url)
       .then(res => res.json())
       .then(allTickers => {
@@ -88,7 +89,9 @@ class App extends Component {
   }
 
   authenticatedLoad() {
-    fetch("/api/private/profile", {
+    var url = process.env["REACT_APP_PRICES_API"] + "api/private/profile";
+    console.log("authenticatedLoad fetching: ", url);
+    fetch(url, {
       headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
     })
       .then(response => {
@@ -196,7 +199,9 @@ class App extends Component {
 
   authorisedTickerCall(method, ticker) {
     var data = { ticker: ticker };
-    fetch("api/private/tickers", {
+    var url = process.env["REACT_APP_PRICES_API"] + "api/private/tickers";
+    console.log("authorisedTickerCall fetching: ", url);
+    fetch(url, {
       method: method,
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers: {
