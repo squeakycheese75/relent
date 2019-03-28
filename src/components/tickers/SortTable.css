@@ -92,6 +92,11 @@ li {
   border: 0px;
 }
 
+.table tr {
+  /* line-height: 0.5em; */
+  border: 0px;
+}
+
 .table th {
   margin-left: 10px;
   padding: 0.2em;

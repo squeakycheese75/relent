@@ -174,7 +174,7 @@ class App extends Component {
     }
 
     if (this.auth.isAuthenticated()) {
-      authorisedTickerCall("POST", index);
+      this.authorisedTickerCall("POST", input);
       //   var data = { ticker: input };
       //   fetch("api/private/tickers", {
       //     method: "POST", // or 'PUT'
@@ -226,7 +226,7 @@ class App extends Component {
     );
 
     if (this.auth.isAuthenticated()) {
-      authorisedTickerCall("DELETE", index);
+      this.authorisedTickerCall("DELETE", index);
       //   var data = { ticker: index };
       //   fetch("api/private/tickers", {
       //     method: "DELETE", // or 'PUT'
