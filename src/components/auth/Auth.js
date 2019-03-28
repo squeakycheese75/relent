@@ -55,7 +55,8 @@ export default class Auth {
     this.userProfile = null;
     this.auth0.logout({
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-      returnTo: "http://localhost:3000"
+      //returnTo: "http://localhost:3000"
+      returnTo: process.env["REACT_APP_PRICES_API"]
     });
     //console.log("auth.logout finished");
   };
