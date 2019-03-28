@@ -223,7 +223,7 @@ class App extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Oops, there's an error.</h1>;
+      return <h1>Oops, there is an error.</h1>;
     }
 
     return (
