@@ -90,9 +90,9 @@ class App extends Component {
   }
 
   authenticatedLoad() {
-    var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
-    console.log("authenticatedLoad fetching: ", url);
-    fetch(url, {
+    // var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
+    // console.log("authenticatedLoad fetching: ", url);
+    fetch("api/private/profile", {
       headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
     })
       .then(response => {
@@ -200,9 +200,9 @@ class App extends Component {
 
   authorisedTickerCall(method, ticker) {
     var data = { ticker: ticker };
-    var url = process.env["REACT_APP_PRICES_API"] + "/api/private/tickers";
-    console.log("authorisedTickerCall fetching: ", url);
-    fetch(url, {
+    //var url = process.env["REACT_APP_PRICES_API"] + "/api/private/tickers";
+    //console.log("authorisedTickerCall fetching: ", url);
+    fetch("api/private/tickers", {
       method: method,
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers: {
