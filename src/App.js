@@ -88,8 +88,7 @@ class App extends Component {
   }
 
   authenticatedLoad() {
-    var url = process.env["REACT_APP_PRICES_API"] + "api/private/profile";
-    fetch(url, {
+    fetch("/api/private/profile", {
       headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
     })
       .then(response => {
@@ -176,13 +175,28 @@ class App extends Component {
 
     if (this.auth.isAuthenticated()) {
       this.authorisedTickerCall("POST", input);
+      //   var data = { ticker: input };
+      //   fetch("api/private/tickers", {
+      //     method: "POST", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
     }
   };
 
   authorisedTickerCall(method, ticker) {
     var data = { ticker: ticker };
-    var url = process.env["REACT_APP_PRICES_API"] + "api/private/tickers";
-    fetch(url, {
+    fetch("api/private/tickers", {
       method: method,
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers: {
@@ -213,6 +227,22 @@ class App extends Component {
 
     if (this.auth.isAuthenticated()) {
       this.authorisedTickerCall("DELETE", index);
+      //   var data = { ticker: index };
+      //   fetch("api/private/tickers", {
+      //     method: "DELETE", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
     }
   };
 
