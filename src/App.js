@@ -1,24 +1,28 @@
 import React, { Component } from "react";
-import { BrowserRouter as Switch, Route } from "react-router-dom";
-import Header from "./components/common/Header";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Nav from "./components/common/Header";
 import AboutPage from "./components/about/AboutPage";
-import HomePage from "./components/home/HomePage";
 import ManagePage from "./components/manage/ManagePage";
-import LoginPage from "./components/login/LoginPage";
 import PricingPage from "./components/tickers/PricingPage";
+import Auth from "./components/auth/Auth";
+//import NotFound from "./components/common/NotFound";
+import Callback from "./Callback";
+import Public from "./Public";
+import Private from "./Private";
+import ProfilePage from "./components/profile/ProfilePage";
 
-require("dotenv").config();
+//require("dotenv").config();
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+  }
   state = {
     hasError: false,
-    isLoaded: false,
-    isAuthenticated: true,
     subscribedTickers: ["AAPL", "ADM.L"],
     data: [],
     user: {
-      sessionId: "ede7d095-428c-478d-9754-4cebbb08a855",
-      username: "SqueakyCheese",
       settings: {
         refresh: "30"
       }
@@ -63,13 +67,46 @@ class App extends Component {
 
   componentWillMount() {
     this.fetchTickers();
-    this.loadData();
+    if (this.auth.isAuthenticated()) {
+      this.authenticatedLoad();
+    } else {
+      this.loadData();
+    }
   }
 
   componentDidMount() {
+    //console.log("Called componentDidMount");
+    if (this.auth.isAuthenticated()) {
+      this.authenticatedLoad();
+    } else {
+      //console.log("componentDidMount User not authenticated");
+      this.loadData();
+    }
     var refreshRate = this.state.user.settings.refresh * 1000;
     setInterval(() => this.loadData(), refreshRate);
-    this.loadData(); // also load one immediately
+    //this.loadData(); // also load one immediately
+  }
+
+  authenticatedLoad() {
+    fetch("/api/private/profile", {
+      headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
+    })
+      .then(response => {
+        if (response.ok) return response;
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => response.json())
+      .then(response => {
+        this.setState({
+          subscribedTickers: response.message
+        });
+      })
+      .then(response => this.loadData())
+      .catch(error => {
+        this.setState({
+          message: error.message
+        });
+      });
   }
 
   componentDidCatch(error, info) {
@@ -78,6 +115,7 @@ class App extends Component {
   }
 
   loadData() {
+    //console.log("In loading data!");
     if (
       Array.isArray(this.state.subscribedTickers) ||
       this.state.subscribedTickers.length
@@ -114,7 +152,6 @@ class App extends Component {
   }
 
   addNewTicker = input => {
-    console.log("App.addNewTicker", input);
     if (input) {
       //Check it's not already in the list
       var resval = this.state.subscribedTickers.some(item => input === item);
@@ -135,7 +172,46 @@ class App extends Component {
         );
       }
     }
+
+    if (this.auth.isAuthenticated()) {
+      this.authorisedTickerCall("POST", input);
+      //   var data = { ticker: input };
+      //   fetch("api/private/tickers", {
+      //     method: "POST", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
+    }
   };
+
+  authorisedTickerCall(method, ticker) {
+    var data = { ticker: ticker };
+    fetch("api/private/tickers", {
+      method: method,
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: {
+        Authorization: `Bearer ${this.auth.getAccessToken()}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) return response;
+        throw new Error("Network response was not ok.");
+      })
+      .then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error));
+  }
 
   removeTicker = index => {
     this.setState(
@@ -148,6 +224,26 @@ class App extends Component {
         this.loadData();
       }
     );
+
+    if (this.auth.isAuthenticated()) {
+      this.authorisedTickerCall("DELETE", index);
+      //   var data = { ticker: index };
+      //   fetch("api/private/tickers", {
+      //     method: "DELETE", // or 'PUT'
+      //     body: JSON.stringify(data), // data can be `string` or {object}!
+      //     headers: {
+      //       Authorization: `Bearer ${this.auth.getAccessToken()}`,
+      //       "Content-Type": "application/json"
+      //     }
+      //   })
+      //     .then(response => {
+      //       if (response.ok) return response;
+      //       throw new Error("Network response was not ok.");
+      //     })
+      //     .then(res => res.json())
+      //     .then(response => console.log("Success:", JSON.stringify(response)))
+      //     .catch(error => console.error("Error:", error));
+    }
   };
 
   render() {
@@ -156,28 +252,13 @@ class App extends Component {
     }
 
     return (
-      <Switch>
+      <>
         <div>
-          <Header />
+          <Nav auth={this.auth} />
 
-          <Route exact path="/" component={HomePage} />
-          <Route path="/about" component={AboutPage} />
-          <Route
-            path="/manage"
-            render={() => (
-              <ManagePage
-                data={this.state.subscribedTickers}
-                addNewTicker={this.addNewTicker}
-                sectors={this.state.sectors}
-                filteredTickers={this.filteredTickers}
-                filteredTickersData={this.state.filteredTickers}
-              />
-            )}
-          />
-          <Route exact path="/login" component={LoginPage} />
           <Route
             exact
-            path="/pricing"
+            path={["/", "/pricing"]}
             render={() => (
               <PricingPage
                 data={this.state.data}
@@ -185,10 +266,50 @@ class App extends Component {
               />
             )}
           />
-          {/* Finally, catch all unmatched routes */}
-          {/* <Route exact component={NotFound} /> */}
+          <Switch>
+            <Route path="/about" component={AboutPage} />
+            <Route
+              path="/manage"
+              render={() => (
+                <ManagePage
+                  data={this.state.subscribedTickers}
+                  addNewTicker={this.addNewTicker}
+                  sectors={this.state.sectors}
+                  filteredTickers={this.filteredTickers}
+                  filteredTickersData={this.state.filteredTickers}
+                />
+              )}
+            />
+            <Route
+              path="/callback"
+              render={props => (
+                <Callback
+                  auth={this.auth}
+                  {...props}
+                  //loadProfileData={this.loadProfileData}
+                />
+              )}
+            />
+            <Route
+              path="/profile"
+              render={props =>
+                this.auth.isAuthenticated() ? (
+                  <ProfilePage auth={this.auth} {...props} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
+            <Route path="/public" component={Public} />
+            <Route
+              path="/private"
+              render={props => <Private auth={this.auth} {...props} />}
+            />
+            {/* Finally, catch all unmatched routes */}
+            {/* <Route component={NotFound} /> */}
+          </Switch>
         </div>
-      </Switch>
+      </>
     );
   }
 }
