@@ -7,7 +7,7 @@ class Private extends Component {
 
   componentDidMount() {
     var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
-    console.log(url);
+    //console.log(url);
     fetch(url, {
       headers: { Authorization: `Bearer ${this.props.auth.getAccessToken()}` }
     })
