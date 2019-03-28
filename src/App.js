@@ -255,13 +255,7 @@ class App extends Component {
             />
             <Route
               path="/callback"
-              render={props => (
-                <Callback
-                  auth={this.auth}
-                  {...props}
-                  //loadProfileData={this.loadProfileData}
-                />
-              )}
+              render={props => <Callback auth={this.auth} {...props} />}
             />
             <Route
               path="/profile"
