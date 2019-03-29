@@ -90,12 +90,13 @@ class App extends Component {
   }
 
   authenticatedLoad() {
-    // var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
-    // console.log("authenticatedLoad fetching: ", url);
-
     var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     fetch(url, {
-      headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
+      // fetch(proxy + url, {
+      headers: {
+        Authorization: `Bearer ${this.auth.getAccessToken()}`,
+        mode: "no-cors"
+      }
     })
       .then(response => {
         if (response.ok) return response;
@@ -193,17 +194,15 @@ class App extends Component {
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers: {
         Authorization: `Bearer ${this.auth.getAccessToken()}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        mode: "no-cors"
       }
     })
       .then(response => {
-        console.log(response.headers);
-      })
-      .then(response => {
-        if (response.ok) return response;
+        if (response.status) return response;
         throw new Error("Network response was not ok.");
       })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(response => console.log("Success:", JSON.stringify(response)))
       .catch(error => console.error("Error:", error));
   }
