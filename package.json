@@ -36,7 +36,6 @@
     "predeploy": "npm run build",
     "deploy": ""
   },
-  "proxy": "https://relentapi.azurewebsites.net/api/private/profile",
   "eslintConfig": {
     "extends": "react-app"
   },
