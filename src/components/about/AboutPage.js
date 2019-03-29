@@ -29,7 +29,7 @@ const AboutPage = () => {
               className="d-inline-block align-top"
               alt="GitHub"
             />{" "}
-            version: 1.0.1
+            version: 1.0.10
           </a>
         </p>
       </Jumbotron>

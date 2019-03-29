@@ -77,7 +77,8 @@ class SortTable extends Component {
     const { data } = this.props;
     const options = {
       onRowClick: function(row) {
-        alert(`You click row id: ${row._id}`);
+        // alert(`You click row id: ${row._id}`);
+        console.log(`You click row id: ${row._id}`);
       },
       noDataText: "Loading..."
     };
