@@ -68,11 +68,11 @@ class App extends Component {
 
   componentWillMount() {
     this.fetchTickers();
-    if (this.auth.isAuthenticated()) {
-      this.authenticatedLoad();
-    } else {
-      this.loadData();
-    }
+    // if (this.auth.isAuthenticated()) {
+    //   this.authenticatedLoad();
+    // } else {
+    //   this.loadData();
+    // }
   }
 
   componentDidMount() {
@@ -92,6 +92,7 @@ class App extends Component {
   authenticatedLoad() {
     // var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     // console.log("authenticatedLoad fetching: ", url);
+
     var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     fetch(url, {
       headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
@@ -195,6 +196,9 @@ class App extends Component {
         "Content-Type": "application/json"
       }
     })
+      .then(response => {
+        console.log(response.headers);
+      })
       .then(response => {
         if (response.ok) return response;
         throw new Error("Network response was not ok.");
