@@ -194,8 +194,8 @@ class App extends Component {
       body: JSON.stringify(data), // data can be `string` or {object}!
       headers: {
         Authorization: `Bearer ${this.auth.getAccessToken()}`,
-        "Content-Type": "application/json",
-        mode: "no-cors"
+        "Content-Type": "application/json"
+        // mode: "no-cors"
       }
     })
       .then(response => {
