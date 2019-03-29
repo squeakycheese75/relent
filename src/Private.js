@@ -6,7 +6,7 @@ class Private extends Component {
   };
 
   componentDidMount() {
-    var url = process.env["REACT_APP_PRICES_API"] + "/api/private/info";
+    var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     //console.log(url);
     // var url =
     //   "https://cors-anywhere.herokuapp.com/http://localhost:5000/api/private/info";

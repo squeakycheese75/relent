@@ -92,6 +92,7 @@ class App extends Component {
   authenticatedLoad() {
     // var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     // console.log("authenticatedLoad fetching: ", url);
+
     var url = process.env["REACT_APP_PRICES_API"] + "/api/private/profile";
     fetch(url, {
       headers: { Authorization: `Bearer ${this.auth.getAccessToken()}` }
