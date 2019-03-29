@@ -95,7 +95,8 @@ class App extends Component {
       // fetch(proxy + url, {
       headers: {
         Authorization: `Bearer ${this.auth.getAccessToken()}`,
-        mode: "no-cors"
+        // mode: "no-cors"
+        "Content-Type": "application/json"
       }
     })
       .then(response => {
@@ -195,6 +196,7 @@ class App extends Component {
       headers: {
         Authorization: `Bearer ${this.auth.getAccessToken()}`,
         "Content-Type": "application/json"
+
         // mode: "no-cors"
       }
     })
