@@ -7,8 +7,8 @@ import PricingPage from "./components/tickers/PricingPage";
 import Auth from "./components/auth/Auth";
 //import NotFound from "./components/common/NotFound";
 import Callback from "./Callback";
-import Public from "./Public";
-import Private from "./Private";
+// import Public from "./Public";
+// import Private from "./Private";
 import ProfilePage from "./components/profile/ProfilePage";
 
 //should all be done by config service
@@ -279,11 +279,11 @@ class App extends Component {
                 )
               }
             />
-            <Route path="/public" component={Public} />
+            {/* <Route path="/public" component={Public} />
             <Route
               path="/private"
               render={props => <Private auth={this.auth} {...props} />}
-            />
+            /> */}
             {/* Finally, catch all unmatched routes */}
             {/* <Route component={NotFound} /> */}
           </Switch>

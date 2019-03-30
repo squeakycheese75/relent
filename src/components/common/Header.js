@@ -25,14 +25,14 @@ class Header extends Component {
               <Link to="about">
                 <Button>About</Button>
               </Link>
-              <Link to="public">
+              {/* <Link to="public">
                 <Button>Public</Button>
               </Link>
-              {/* {isAuthenticated() && ( */}
+              {isAuthenticated() && (
               <Link to="private">
                 <Button>Private</Button>
               </Link>
-              {/* )} */}
+              )} */}
             </Nav>
             <Nav pullright="true">
               {isAuthenticated() && (
