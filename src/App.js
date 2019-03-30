@@ -11,6 +11,9 @@ import Public from "./Public";
 import Private from "./Private";
 import ProfilePage from "./components/profile/ProfilePage";
 
+//should all be done by config service
+const defaultTickersList = ["MSFT"];
+
 //require("dotenv").config();
 
 class App extends Component {
@@ -20,7 +23,7 @@ class App extends Component {
   }
   state = {
     hasError: false,
-    subscribedTickers: ["AAPL", "ADM.L"],
+    subscribedTickers: defaultTickersList,
     data: [],
     user: {
       settings: {
@@ -106,7 +109,9 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         this.setState({
-          subscribedTickers: !response.message ? ["MSFT"] : response.message
+          subscribedTickers: !response.message
+            ? [defaultTickersList]
+            : response.message
         });
       })
       .then(response => this.loadData())
