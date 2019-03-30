@@ -1,54 +1,61 @@
 import React, { Component } from "react";
 import styles from "./Header.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from "react-bootstrap";
-//import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 //import styles from "./Header.css";
 
 class Header extends Component {
   render() {
     const { isAuthenticated, login, logout } = this.props.auth;
-
     return (
       <div className={styles}>
-        <Navbar collapseOnSelect expand="sm" bg="primary" variant="dark">
+        <Navbar collapseOnSelect={true} expand="sm" bg="primary" variant="dark">
           <Navbar.Brand>R E L E N T</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="navbar-nav mr-auto">
-              <Link to="pricing">
+              {/* <Link to="pricing">
                 <Button className="btn outline">Prices</Button>
               </Link>
               <Link to="manage">
                 <Button>Manage</Button>
-              </Link>
-              <Link to="about">
-                <Button>About</Button>
-              </Link>
-              {/* <Link to="public">
-                <Button>Public</Button>
-              </Link>
-              {isAuthenticated() && (
-              <Link to="private">
-                <Button>Private</Button>
-              </Link>
-              )} */}
+              </Link> */}
+              <LinkContainer to="pricing">
+                <Nav.Link>
+                  <Button>Prices</Button>
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="manage">
+                <Nav.Link>
+                  <Button>Manage</Button>
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="about">
+                <Nav.Link>
+                  <Button>About</Button>
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
             <Nav pullright="true">
               {isAuthenticated() && (
-                <Link to="profile">
-                  <Button>Profile</Button>
-                </Link>
+                <LinkContainer to="profile">
+                  <Nav.Link>
+                    <Button>Profle</Button>
+                  </Nav.Link>
+                </LinkContainer>
               )}
-              <Link to="login">
-                <Button
-                  className={styles}
-                  variant="outline-light"
-                  onClick={isAuthenticated() ? logout : login}
-                >
-                  {isAuthenticated() ? "Log Out" : "Log In"}
-                </Button>
-              </Link>
+              <LinkContainer to="login">
+                <Nav.Link>
+                  <Button
+                    className={styles}
+                    variant="outline-light"
+                    onClick={isAuthenticated() ? logout : login}
+                  >
+                    {isAuthenticated() ? "Log Out" : "Log In"}
+                  </Button>
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
