@@ -106,7 +106,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         this.setState({
-          subscribedTickers: response.message
+          subscribedTickers: !response.message ? ["MSFT"] : response.message
         });
       })
       .then(response => this.loadData())
