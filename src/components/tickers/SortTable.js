@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
-//import {Button} from 'react-bootstrap';
 import "./SortTable.css";
 //import styles from "./sortTable-styles.js";
 
@@ -51,6 +50,12 @@ function nameFormatter(cell, row) {
   );
 }
 
+// function onSelectRow(row, isSelected, e) {
+//   if (isSelected) {
+//     alert(`You just selected '${row["name"]}'`);
+//   }
+// }
+
 class SortTable extends Component {
   removeItem = index => {
     this.props.onSubmit(index);
@@ -58,7 +63,6 @@ class SortTable extends Component {
 
   removeButton(cell) {
     return (
-      //<Button variant="danger" size="sm" className="mdc-icon-button material-icons md-12" onClick={() => this.removeItem(cell)}>highlight_off</Button>
       <i
         className="mdc-icon-button material-icons md-12 orange600"
         onClick={() => this.removeItem(cell)}
@@ -71,21 +75,33 @@ class SortTable extends Component {
 
   render() {
     const { data } = this.props;
+    const options = {
+      onRowClick: function(row) {
+        // alert(`You click row id: ${row._id}`);
+        console.log(`You click row id: ${row._id}`);
+      },
+      noDataText: "Loading..."
+    };
+    // const selectRowProp = {
+    //   mode: "checkbox",
+    //   //bgColor: "pink", // you should give a bgcolor, otherwise, you can't regonize which row has been selected
+    //   hideSelectColumn: true, // enable hide selection column.
+    //   clickToSelect: true, // you should enable clickToSelect, otherwise, you can't select column.
+    //   onSelect: onSelectRow
+    // };
+
     return (
       <div>
         <BootstrapTable
-          ref="table"
           data={data}
           headerContainerClass="bstable"
-          responsive
           striped
-          bordered
-          // hover
+          hover
+          condensed
           size="sm"
           version="4"
-          //bordered={false}
-          // styles={styles.boostraptable}
-          options={{ noDataText: "Loading..." }}
+          //selectRow={selectRowProp}
+          options={options}
         >
           <TableHeaderColumn
             width="30%"
@@ -94,7 +110,6 @@ class SortTable extends Component {
             dataSort={true}
             //bordered={true}
             columnClassName="bstable"
-            // styles={styles.tableColumnHeader}
             dataFormat={nameFormatter}
           >
             Name

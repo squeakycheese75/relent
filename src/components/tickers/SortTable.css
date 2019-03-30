@@ -32,8 +32,8 @@
 
 .bstable {
   font-size: small;
-  padding-left: 0.25em;
-  padding-right: 0.25em;
+  /* padding-left: 0.25em;
+  padding-right: 0.25em; */
 }
 
 .vertical-align-middle {
@@ -89,6 +89,11 @@ li {
   padding: 0.2em;
   margin-left: 10px;
   vertical-align: middle;
+  border: 0px;
+}
+
+.table tr {
+  /* line-height: 0.5em; */
   border: 0px;
 }
 
