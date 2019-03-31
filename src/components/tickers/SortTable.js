@@ -82,13 +82,6 @@ class SortTable extends Component {
       },
       noDataText: "Loading..."
     };
-    // const selectRowProp = {
-    //   mode: "checkbox",
-    //   //bgColor: "pink", // you should give a bgcolor, otherwise, you can't regonize which row has been selected
-    //   hideSelectColumn: true, // enable hide selection column.
-    //   clickToSelect: true, // you should enable clickToSelect, otherwise, you can't select column.
-    //   onSelect: onSelectRow
-    // };
 
     return (
       <div>
